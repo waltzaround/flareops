@@ -1,0 +1,47 @@
+{
+  "name": "flareops",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "tauri": "tauri",
+    "test": "vitest run",
+    "format": "prettier --write src *.ts *.json",
+    "desktop:prepare": "node scripts/prepare-runtime.mjs",
+    "desktop:build": "node scripts/build-desktop.mjs",
+    "test:packaging": "node --test scripts/runtime-config.test.mjs",
+    "release:check": "node scripts/release.mjs check",
+    "test:scripts": "node scripts/test-scripts.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@tanstack/react-query": "^5.90.0",
+    "@tauri-apps/api": "^2.8.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "croner": "^10.0.1",
+    "cronstrue": "^3.27.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.3.1",
+    "zod": "^3.25.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "@tauri-apps/cli": "^2.8.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "prettier": "^3.9.9",
+    "tailwindcss": "^4.1.13",
+    "typescript": "~5.9.2",
+    "vite": "^6.3.6",
+    "vitest": "^4.1.11"
+  }
+}

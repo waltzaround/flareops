@@ -1,0 +1,6 @@
+{
+  "identifier": "main",
+  "description": "Desktop window capability; no shell or filesystem access from the renderer.",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

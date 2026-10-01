@@ -1,0 +1,131 @@
+name: Desktop release
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: desktop-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            target: aarch64-apple-darwin
+            bundles: app,dmg
+          - os: macos-15-intel
+            target: x86_64-apple-darwin
+            bundles: app,dmg
+          - os: windows-2022
+            target: x86_64-pc-windows-msvc
+            bundles: nsis
+          - os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            bundles: deb,appimage
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    env:
+      RELEASE_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
+      TAURI_ENV_TARGET_TRIPLE: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.3"
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install Linux dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf libfuse2
+      - run: npm ci
+      - run: npm run release:check
+      - run: npm test
+      - run: npm run test:scripts
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: npm run desktop:prepare
+      - name: Check configured Apple signing credentials
+        if: runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true'
+        shell: bash
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          for name in APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
+            if [ -z "${!name}" ]; then echo "Missing signing secret: $name"; exit 1; fi
+          done
+      - name: Build installers
+        uses: tauri-apps/tauri-action@v0
+        env:
+          APPLE_CERTIFICATE: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_CERTIFICATE || '' }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
+          APPLE_SIGNING_IDENTITY: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_SIGNING_IDENTITY || '' }}
+          APPLE_ID: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_ID || '' }}
+          APPLE_PASSWORD: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_PASSWORD || '' }}
+          APPLE_TEAM_ID: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && secrets.APPLE_TEAM_ID || '' }}
+        with:
+          args: --config src-tauri/tauri.bundled.conf.json --bundles ${{ matrix.bundles }}
+      - name: Verify Apple signature and notarization
+        if: runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true'
+        run: |
+          codesign --verify --deep --strict src-tauri/target/release/bundle/macos/FlareOps.app
+          xcrun stapler validate src-tauri/target/release/bundle/macos/FlareOps.app
+          spctl --assess --type execute src-tauri/target/release/bundle/macos/FlareOps.app
+      - name: Collect installers and checksums
+        env:
+          RELEASE_SIGNING: ${{ runner.os == 'macOS' && vars.MACOS_SIGNING_ENABLED == 'true' && 'notarized' || 'unsigned' }}
+        run: node scripts/release.mjs collect src-tauri/target/release/bundle release-assets ${{ matrix.target }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ matrix.target }}
+          path: release-assets/*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+  release:
+    name: Assemble draft release
+    needs: build
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.23.3"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: installers-*
+          path: release-input
+      - name: Assemble website download metadata
+        run: node scripts/release.mjs manifest release-input release-assets
+      - uses: actions/upload-artifact@v4
+        with:
+          name: website-release
+          path: release-assets/*
+          compression-level: 0
+          retention-days: 14
+      - name: Create or update draft GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" --json isDraft > release-state.json 2>/dev/null; then
+            node -e "if (!JSON.parse(require('fs').readFileSync('release-state.json')).isDraft) throw Error('Refusing to overwrite a published release')"
+          else
+            args=("$RELEASE_TAG" --verify-tag --draft --title "FlareOps $RELEASE_TAG" --notes-file .github/RELEASE_NOTES.md)
+            if [[ "$RELEASE_TAG" == *-* ]]; then args+=(--prerelease); fi
+            gh release create "${args[@]}"
+          fi
+          gh release upload "$RELEASE_TAG" release-assets/* --clobber
+          echo "Draft release prepared. Review signing status, test installers, edit release notes, then publish." >> "$GITHUB_STEP_SUMMARY"

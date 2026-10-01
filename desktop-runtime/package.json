@@ -1,0 +1,7 @@
+{
+  "name": "flareops-bundled-cf",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pinned official Cloudflare CLI dependencies staged into the desktop bundle",
+  "dependencies": { "cf": "1.0.0-beta.8" }
+}

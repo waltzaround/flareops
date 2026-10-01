@@ -1,0 +1,27 @@
+node_modules/
+dist/
+src-tauri/target/
+test-results/
+playwright-report/
+.DS_Store
+src-tauri/binaries/
+src-tauri/resources/cf-runtime/
+.runtime-cache/
+*.tsbuildinfo
+
+release-assets/
+release-input/
+release-state.json
+
+# Local Cloudflare state and release signing material
+.wrangler/
+.env
+.env.*
+!.env.example
+*.p12
+*.pfx
+
+# Local design captures, generated schemas, and separately managed website
+/*.png
+src-tauri/gen/
+website/

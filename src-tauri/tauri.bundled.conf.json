@@ -1,0 +1,6 @@
+{
+  "bundle": {
+    "externalBin": ["binaries/flareops-node"],
+    "resources": { "resources/cf-runtime/": "cf-runtime/" }
+  }
+}

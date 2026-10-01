@@ -1,0 +1,3546 @@
+{
+  "abuse-reports get": {
+    "operationId": "GetAbuseReport",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/abuse-reports/{report_param}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "report_param",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "abuse-reports list": {
+    "operationId": "ListAbuseReports",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/abuse-reports",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "domain",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "created_before",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "created_after",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "mitigation_status",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "abuse-reports mitigations list": {
+    "operationId": "ListMitigations",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "report_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "effective_before",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "effective_after",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "entity_type",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "account-tags get": {
+    "operationId": "generated:get:/{account_or_zone}/{account_or_zone_id}/tags",
+    "httpMethod": "GET",
+    "path": "/{account_or_zone}/{account_or_zone_id}/tags",
+    "pathParams": [
+      {
+        "name": "account_or_zone",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_or_zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "resource_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "resource_type",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "worker_id",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "accounts billing history list": {
+    "operationId": "account-billing-history-get-billing-history",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/billing/history",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "accounts get": {
+    "operationId": "accounts-account-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "accounts subscriptions get": {
+    "operationId": "generated:get:/{account_or_zone}/{account_or_zone_id}/subscriptions",
+    "httpMethod": "GET",
+    "path": "/{account_or_zone}/{account_or_zone_id}/subscriptions",
+    "pathParams": [
+      {
+        "name": "account_or_zone",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_or_zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "accounts update": {
+    "operationId": "accounts-update-account",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "Identifier"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Account name"
+      },
+      {
+        "name": "settings-abuse-contact-email",
+        "type": "string",
+        "required": false,
+        "description": "Sets an abuse contact email to notify for abuse reports."
+      },
+      {
+        "name": "settings-enforce-twofactor",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether membership in this account requires that\nTwo-Factor Authentication is enabled"
+      }
+    ]
+  },
+  "analytics_engine sql query": {
+    "operationId": "analytics-engine-sql-query-post",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/analytics_engine/sql",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": []
+  },
+  "billing usage get-v1": {
+    "operationId": "billable-usage-get-v1-account-usage",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/billable-usage",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "from",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "hyperdrive get": {
+    "operationId": "get-hyperdrive",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "hyperdrive_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "hyperdrive restart": {
+    "operationId": "restart-hyperdrive",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}/restart",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "hyperdrive_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "images edit": {
+    "operationId": "cloudflare-images-update-image",
+    "httpMethod": "PATCH",
+    "path": "/accounts/{account_id}/images/v1/{image_id}",
+    "pathParams": [
+      {
+        "name": "image_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "creator",
+        "type": "string",
+        "required": false,
+        "description": "Can set the creator field with an internal user ID."
+      },
+      {
+        "name": "require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the image can be accessed using only its UID. If set to `true`, a signed token needs to be generated with a signing key to view the image. Returns a new UID on a change. No change if not specified."
+      }
+    ]
+  },
+  "images flows get": {
+    "operationId": "get_FlowsGet",
+    "httpMethod": "GET",
+    "path": "/zones/{zone_id}/images/v1/flows",
+    "pathParams": [
+      {
+        "name": "zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "images get": {
+    "operationId": "cloudflare-images-image-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/images/v1/{image_id}",
+    "pathParams": [
+      {
+        "name": "image_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "images stats": {
+    "operationId": "cloudflare-images-images-usage-statistics",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/images/v1/stats",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "images variants create": {
+    "operationId": "cloudflare-images-variants-create-a-variant",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/images/v1/variants",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "The id field"
+      },
+      {
+        "name": "never-require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+      },
+      {
+        "name": "options-fit",
+        "type": "string",
+        "required": true,
+        "description": "The fit property describes how the width and height dimensions should be interpreted."
+      },
+      {
+        "name": "options-height",
+        "type": "number",
+        "required": true,
+        "description": "Maximum height in image pixels."
+      },
+      {
+        "name": "options-metadata",
+        "type": "string",
+        "required": true,
+        "description": "What EXIF data should be preserved in the output image."
+      },
+      {
+        "name": "options-width",
+        "type": "number",
+        "required": true,
+        "description": "Maximum width in image pixels."
+      }
+    ]
+  },
+  "images variants edit": {
+    "operationId": "cloudflare-images-variants-update-a-variant",
+    "httpMethod": "PATCH",
+    "path": "/accounts/{account_id}/images/v1/variants/{variant_id}",
+    "pathParams": [
+      {
+        "name": "variant_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "never-require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the variant can access an image without a signature, regardless of image access control."
+      },
+      {
+        "name": "options-fit",
+        "type": "string",
+        "required": true,
+        "description": "The fit property describes how the width and height dimensions should be interpreted."
+      },
+      {
+        "name": "options-height",
+        "type": "number",
+        "required": true,
+        "description": "Maximum height in image pixels."
+      },
+      {
+        "name": "options-metadata",
+        "type": "string",
+        "required": true,
+        "description": "What EXIF data should be preserved in the output image."
+      },
+      {
+        "name": "options-width",
+        "type": "number",
+        "required": true,
+        "description": "Maximum width in image pixels."
+      }
+    ]
+  },
+  "images variants list": {
+    "operationId": "cloudflare-images-variants-list-variants",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/images/v1/variants",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel asn get": {
+    "operationId": "asn-intelligence-get-asn-overview",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/asn/{asn}",
+    "pathParams": [
+      {
+        "name": "asn",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel attack-surface-report issue-types get": {
+    "operationId": "get-security-center-issue-types",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/attack-surface-report/issue-types",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel attack-surface-report issues list": {
+    "operationId": "get-security-center-issues",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/attack-surface-report/issues",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "dismissed",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "issue_class",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_type",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "product",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "source",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "severity",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "subject",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_class~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_type~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "product~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "severity~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "subject~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel attack-surface-report issues severity": {
+    "operationId": "get-security-center-issue-counts-by-severity",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/attack-surface-report/issues/severity",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "dismissed",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "issue_class",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_type",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "product",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "source",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "severity",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "subject",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_class~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "issue_type~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "product~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "severity~neq",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "subject~neq",
+        "type": "array",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel dns list": {
+    "operationId": "passive-dns-by-ip-get-passive-dns-by-ip",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/dns",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "start_end_params",
+        "type": "object",
+        "required": false
+      },
+      {
+        "name": "ipv4",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel domains get": {
+    "operationId": "domain-intelligence-get-domain-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/domain",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "domain",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "skip_dns",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "skip_ranking",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel urls get": {
+    "operationId": "url-intelligence-get-url-intelligence",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/url",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "url",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "intel whois get": {
+    "operationId": "whois-record-get-whois-record",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/intel/whois",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "domain",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "magic-network-monitoring configs full get": {
+    "operationId": "magic-network-monitoring-configuration-list-rules-and-account-configuration",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/mnm/config/full",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "magic-network-monitoring rules list": {
+    "operationId": "magic-network-monitoring-rules-list-rules",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/mnm/rules",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "oauth-clients get": {
+    "operationId": "oauth-clients-get",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/oauth_clients/{oauth_client_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "oauth_client_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "oauth-clients list": {
+    "operationId": "oauth-clients-list",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/oauth_clients",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "pipelines get": {
+    "operationId": "getV4AccountsByAccount_idPipelinesV1PipelinesByPipeline_id",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/pipelines/v1/pipelines/{pipeline_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "pipeline_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "pipelines sinks list": {
+    "operationId": "getV4AccountsByAccount_idPipelinesV1Sinks",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/pipelines/v1/sinks",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "pipeline_id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "pipelines streams list": {
+    "operationId": "getV4AccountsByAccount_idPipelinesV1Streams",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/pipelines/v1/streams",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "pipeline_id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "resource-tagging summary get": {
+    "operationId": "tags-list-key-summary",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/tags/summary",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "cursor",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "rules lists items list": {
+    "operationId": "lists-get-list-items",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/rules/lists/{list_id}/items",
+    "pathParams": [
+      {
+        "name": "list_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "cursor",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "rulesets account-rulesets get": {
+    "operationId": "generated:get:/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+    "httpMethod": "GET",
+    "path": "/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
+    "pathParams": [
+      {
+        "name": "account_or_zone",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "ruleset_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_or_zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "secrets-store quota get": {
+    "operationId": "secrets-store-quota",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/secrets_store/quota",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "secrets-store stores get": {
+    "operationId": "secrets-store-get-store-by-id",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/secrets_store/stores/{store_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "store_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "stream live-inputs create": {
+    "operationId": "stream-live-inputs-create-a-live-input",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/stream/live_inputs",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "default-creator",
+        "type": "string",
+        "required": false,
+        "description": "Sets the creator ID asssociated with this live input."
+      },
+      {
+        "name": "delete-recording-after-days",
+        "type": "number",
+        "required": false,
+        "description": "Indicates the number of days after which the live inputs recordings will be deleted. When a stream completes and the recording is ready, the value is used to calculate a scheduled deletion date for that recording. Omit the field to indicate no change, or include with a `null` value to remove an existing scheduled deletion."
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the live input is enabled and can accept streams."
+      },
+      {
+        "name": "prefer-low-latency",
+        "type": "boolean",
+        "required": false,
+        "description": "When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS), reducing glass-to-glass latency for viewers at the cost of reduced player compatibility."
+      },
+      {
+        "name": "recording-allowed-origins",
+        "type": "string",
+        "required": false,
+        "description": "Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin."
+      },
+      {
+        "name": "recording-hide-live-viewer-count",
+        "type": "boolean",
+        "required": false,
+        "description": "Disables reporting the number of live viewers when this property is set to `true`."
+      },
+      {
+        "name": "recording-mode",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the recording behavior for the live input. Set this value to `off` to prevent a recording. Set the value to `automatic` to begin a recording and transition to on-demand after Stream Live stops receiving input."
+      },
+      {
+        "name": "recording-require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates if a video using the live input has the `requireSignedURLs` property set. Also enforces access controls on any video recording of the livestream with the live input."
+      },
+      {
+        "name": "recording-timeout-seconds",
+        "type": "number",
+        "required": false,
+        "description": "Determines the amount of time a live input configured in `automatic` mode should wait before a recording transitions from live to on-demand. `0` is recommended for most use cases and indicates the platform default should be used."
+      }
+    ]
+  },
+  "stream live-inputs get": {
+    "operationId": "stream-live-inputs-retrieve-a-live-input",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+    "pathParams": [
+      {
+        "name": "live_input_identifier",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "stream live-inputs update": {
+    "operationId": "stream-live-inputs-update-a-live-input",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
+    "pathParams": [
+      {
+        "name": "live_input_identifier",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "default-creator",
+        "type": "string",
+        "required": false,
+        "description": "Sets the creator ID asssociated with this live input."
+      },
+      {
+        "name": "delete-recording-after-days",
+        "type": "number",
+        "required": false,
+        "description": "Indicates the number of days after which the live inputs recordings will be deleted. When a stream completes and the recording is ready, the value is used to calculate a scheduled deletion date for that recording. Omit the field to indicate no change, or include with a `null` value to remove an existing scheduled deletion."
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the live input is enabled and can accept streams."
+      },
+      {
+        "name": "prefer-low-latency",
+        "type": "boolean",
+        "required": false,
+        "description": "When enabled, the live stream is delivered using Low-Latency HLS (LL-HLS), reducing glass-to-glass latency for viewers at the cost of reduced player compatibility."
+      },
+      {
+        "name": "recording-allowed-origins",
+        "type": "string",
+        "required": false,
+        "description": "Lists the origins allowed to display videos created with this input. Enter allowed origin domains in an array and use `*` for wildcard subdomains. An empty array allows videos to be viewed on any origin."
+      },
+      {
+        "name": "recording-hide-live-viewer-count",
+        "type": "boolean",
+        "required": false,
+        "description": "Disables reporting the number of live viewers when this property is set to `true`."
+      },
+      {
+        "name": "recording-mode",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the recording behavior for the live input. Set this value to `off` to prevent a recording. Set the value to `automatic` to begin a recording and transition to on-demand after Stream Live stops receiving input."
+      },
+      {
+        "name": "recording-require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates if a video using the live input has the `requireSignedURLs` property set. Also enforces access controls on any video recording of the livestream with the live input."
+      },
+      {
+        "name": "recording-timeout-seconds",
+        "type": "number",
+        "required": false,
+        "description": "Determines the amount of time a live input configured in `automatic` mode should wait before a recording transitions from live to on-demand. `0` is recommended for most use cases and indicates the platform default should be used."
+      }
+    ]
+  },
+  "stream storage-usage": {
+    "operationId": "stream-videos-storage-usage",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/stream/storage-usage",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "creator",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "stream videos captions list": {
+    "operationId": "stream-subtitles/-captions-list-captions-or-subtitles",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/stream/{identifier}/captions",
+    "pathParams": [
+      {
+        "name": "identifier",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "stream videos edit": {
+    "operationId": "stream-videos-update-video-details",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/stream/{identifier}",
+    "pathParams": [
+      {
+        "name": "identifier",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "allowed-origins",
+        "type": "string",
+        "required": false,
+        "description": "Lists the origins allowed to display the video. Enter allowed origin domains in an array and use `*` for wildcard subdomains. Empty arrays allow the video to be viewed on any origin."
+      },
+      {
+        "name": "creator",
+        "type": "string",
+        "required": false,
+        "description": "A user-defined identifier for the media creator."
+      },
+      {
+        "name": "max-duration-seconds",
+        "type": "number",
+        "required": false,
+        "description": "The maximum duration in seconds for a video upload. Can be set for a video that is not yet uploaded to limit its duration. Uploads that exceed the specified duration will fail during processing. A value of `-1` means the value is unknown."
+      },
+      {
+        "name": "public-details-channel-link",
+        "type": "string",
+        "required": false,
+        "description": "The publicDetails.channel_link field"
+      },
+      {
+        "name": "public-details-logo",
+        "type": "string",
+        "required": false,
+        "description": "The publicDetails.logo field"
+      },
+      {
+        "name": "public-details-share-link",
+        "type": "string",
+        "required": false,
+        "description": "The publicDetails.share_link field"
+      },
+      {
+        "name": "public-details-title",
+        "type": "string",
+        "required": false,
+        "description": "The publicDetails.title field"
+      },
+      {
+        "name": "require-signed-urls",
+        "type": "boolean",
+        "required": false,
+        "description": "Indicates whether the video can be a accessed using the UID. When set to `true`, a signed token must be generated with a signing key to view the video."
+      },
+      {
+        "name": "scheduled-deletion",
+        "type": "string",
+        "required": false,
+        "description": "Indicates the date and time at which the video will be deleted. Omit the field to indicate no change, or include with a `null` value to remove an existing scheduled deletion. If specified, must be at least 30 days from upload time."
+      },
+      {
+        "name": "thumbnail-timestamp-pct",
+        "type": "number",
+        "required": false,
+        "description": "The timestamp for a thumbnail image calculated as a percentage value of the video's duration. To convert from a second-wise timestamp to a percentage, divide the desired timestamp by the total duration of the video.  If this value is not set, the default thumbnail image is taken from 0s of the video."
+      },
+      {
+        "name": "uid",
+        "type": "string",
+        "required": false,
+        "description": "The unique identifier for the video. Can be used to verify the video being updated."
+      },
+      {
+        "name": "upload-expiry",
+        "type": "string",
+        "required": false,
+        "description": "The date and time when the video upload URL is no longer valid for direct user uploads."
+      }
+    ]
+  },
+  "stream videos get": {
+    "operationId": "stream-videos-retrieve-video-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/stream/{identifier}",
+    "pathParams": [
+      {
+        "name": "identifier",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "tags resources list": {
+    "operationId": "tags-list",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/tags/resources",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "type",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "id",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "case_insensitive",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "tag",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "cursor",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "tunnels get": {
+    "operationId": "cloudflare-tunnel-get-a-cloudflare-tunnel",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "tunnel_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "turnstile widgets create": {
+    "operationId": "accounts-turnstile-widget-create",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/challenges/widgets",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "order",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "filter",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "bot-fight-mode",
+        "type": "boolean",
+        "required": false,
+        "description": "If bot_fight_mode is set to `true`, Cloudflare issues computationally\nexpensive challenges in response to malicious bots (ENT only).\n"
+      },
+      {
+        "name": "clearance-level",
+        "type": "string",
+        "required": false,
+        "description": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,\nthis setting can determine the clearance level to be set\n"
+      },
+      {
+        "name": "domains",
+        "type": "string",
+        "required": true,
+        "description": "The domains field"
+      },
+      {
+        "name": "ephemeral-id",
+        "type": "boolean",
+        "required": false,
+        "description": "Return the Ephemeral ID in /siteverify (ENT only).\n"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Human readable widget name. Not unique. Cloudflare suggests that you\nset this to a meaningful string to make it easier to identify your\nwidget, and where it is used.\n"
+      },
+      {
+        "name": "offlabel",
+        "type": "boolean",
+        "required": false,
+        "description": "Do not show any Cloudflare branding on the widget (ENT only).\n"
+      },
+      {
+        "name": "region",
+        "type": "string",
+        "required": false,
+        "description": "Region where this widget can be used. This cannot be changed after creation.\n"
+      }
+    ]
+  },
+  "turnstile widgets get": {
+    "operationId": "accounts-turnstile-widget-get",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/challenges/widgets/{sitekey}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "sitekey",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "turnstile widgets update": {
+    "operationId": "accounts-turnstile-widget-update",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}/challenges/widgets/{sitekey}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "sitekey",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "bot-fight-mode",
+        "type": "boolean",
+        "required": false,
+        "description": "If bot_fight_mode is set to `true`, Cloudflare issues computationally\nexpensive challenges in response to malicious bots (ENT only).\n"
+      },
+      {
+        "name": "clearance-level",
+        "type": "string",
+        "required": false,
+        "description": "If Turnstile is embedded on a Cloudflare site and the widget should grant challenge clearance,\nthis setting can determine the clearance level to be set\n"
+      },
+      {
+        "name": "domains",
+        "type": "string",
+        "required": true,
+        "description": "The domains field"
+      },
+      {
+        "name": "ephemeral-id",
+        "type": "boolean",
+        "required": false,
+        "description": "Return the Ephemeral ID in /siteverify (ENT only).\n"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Human readable widget name. Not unique. Cloudflare suggests that you\nset this to a meaningful string to make it easier to identify your\nwidget, and where it is used.\n"
+      },
+      {
+        "name": "offlabel",
+        "type": "boolean",
+        "required": false,
+        "description": "Do not show any Cloudflare branding on the widget (ENT only).\n"
+      },
+      {
+        "name": "region",
+        "type": "string",
+        "required": false,
+        "description": "Region where this widget can be used. This cannot be changed after creation.\n"
+      }
+    ]
+  },
+  "zaraz config get": {
+    "operationId": "get-zones-zone_identifier-zaraz-config",
+    "httpMethod": "GET",
+    "path": "/zones/{zone_id}/settings/zaraz/config",
+    "pathParams": [
+      {
+        "name": "zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "zaraz config update": {
+    "operationId": "put-zones-zone_identifier-zaraz-config",
+    "httpMethod": "PUT",
+    "path": "/zones/{zone_id}/settings/zaraz/config",
+    "pathParams": [
+      {
+        "name": "zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "analytics-default-purpose",
+        "type": "string",
+        "required": false,
+        "description": "Consent purpose assigned to Monitoring."
+      },
+      {
+        "name": "analytics-enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Whether Advanced Monitoring reports are enabled."
+      },
+      {
+        "name": "analytics-session-exp-time",
+        "type": "number",
+        "required": false,
+        "description": "Session expiration time (seconds)."
+      },
+      {
+        "name": "consent-company-email",
+        "type": "string",
+        "required": false,
+        "description": "The consent.companyEmail field"
+      },
+      {
+        "name": "consent-company-name",
+        "type": "string",
+        "required": false,
+        "description": "The consent.companyName field"
+      },
+      {
+        "name": "consent-company-street-address",
+        "type": "string",
+        "required": false,
+        "description": "The consent.companyStreetAddress field"
+      },
+      {
+        "name": "consent-consent-modal-intro-html",
+        "type": "string",
+        "required": false,
+        "description": "The consent.consentModalIntroHTML field"
+      },
+      {
+        "name": "consent-cookie-name",
+        "type": "string",
+        "required": false,
+        "description": "The consent.cookieName field"
+      },
+      {
+        "name": "consent-custom-css",
+        "type": "string",
+        "required": false,
+        "description": "The consent.customCSS field"
+      },
+      {
+        "name": "consent-custom-intro-disclaimer-dismissed",
+        "type": "boolean",
+        "required": false,
+        "description": "The consent.customIntroDisclaimerDismissed field"
+      },
+      {
+        "name": "consent-default-language",
+        "type": "string",
+        "required": false,
+        "description": "The consent.defaultLanguage field"
+      },
+      {
+        "name": "consent-enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "The consent.enabled field"
+      },
+      {
+        "name": "consent-hide-modal",
+        "type": "boolean",
+        "required": false,
+        "description": "The consent.hideModal field"
+      },
+      {
+        "name": "consent-tcf-compliant",
+        "type": "boolean",
+        "required": false,
+        "description": "The consent.tcfCompliant field"
+      },
+      {
+        "name": "data-layer",
+        "type": "boolean",
+        "required": true,
+        "description": "Data layer compatibility mode enabled."
+      },
+      {
+        "name": "debug-key",
+        "type": "string",
+        "required": true,
+        "description": "The key for Zaraz debug mode."
+      },
+      {
+        "name": "history-change",
+        "type": "boolean",
+        "required": false,
+        "description": "Single Page Application support enabled."
+      },
+      {
+        "name": "settings-auto-inject-script",
+        "type": "boolean",
+        "required": true,
+        "description": "Automatic injection of Zaraz scripts enabled."
+      },
+      {
+        "name": "settings-context-enricher-escaped-worker-name",
+        "type": "string",
+        "required": true,
+        "description": "The settings.contextEnricher.escapedWorkerName field"
+      },
+      {
+        "name": "settings-context-enricher-worker-tag",
+        "type": "string",
+        "required": true,
+        "description": "The settings.contextEnricher.workerTag field"
+      },
+      {
+        "name": "settings-cookie-domain",
+        "type": "string",
+        "required": false,
+        "description": "The domain Zaraz will use for writing and reading its cookies."
+      },
+      {
+        "name": "settings-ecommerce",
+        "type": "boolean",
+        "required": false,
+        "description": "Ecommerce API enabled."
+      },
+      {
+        "name": "settings-events-api-path",
+        "type": "string",
+        "required": false,
+        "description": "Custom endpoint for server-side track events."
+      },
+      {
+        "name": "settings-hide-external-referer",
+        "type": "boolean",
+        "required": false,
+        "description": "Hiding external referrer URL enabled."
+      },
+      {
+        "name": "settings-hide-ipaddress",
+        "type": "boolean",
+        "required": false,
+        "description": "Trimming IP address enabled."
+      },
+      {
+        "name": "settings-hide-query-params",
+        "type": "boolean",
+        "required": false,
+        "description": "Removing URL query params enabled."
+      },
+      {
+        "name": "settings-hide-user-agent",
+        "type": "boolean",
+        "required": false,
+        "description": "Removing sensitive data from User Agent string enabled."
+      },
+      {
+        "name": "settings-init-path",
+        "type": "string",
+        "required": false,
+        "description": "Custom endpoint for Zaraz init script."
+      },
+      {
+        "name": "settings-inject-iframes",
+        "type": "boolean",
+        "required": false,
+        "description": "Injection of Zaraz scripts into iframes enabled."
+      },
+      {
+        "name": "settings-mc-root-path",
+        "type": "string",
+        "required": false,
+        "description": "Custom path for Managed Components server functionalities."
+      },
+      {
+        "name": "settings-script-path",
+        "type": "string",
+        "required": false,
+        "description": "Custom endpoint for Zaraz main script."
+      },
+      {
+        "name": "settings-track-path",
+        "type": "string",
+        "required": false,
+        "description": "Custom endpoint for Zaraz tracking requests."
+      },
+      {
+        "name": "zaraz-version",
+        "type": "number",
+        "required": true,
+        "description": "Zaraz internal version of the config."
+      }
+    ]
+  },
+  "zaraz history list": {
+    "operationId": "get-zones-zone_identifier-zaraz-history",
+    "httpMethod": "GET",
+    "path": "/zones/{zone_id}/settings/zaraz/history",
+    "pathParams": [
+      {
+        "name": "zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "offset",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "sortField",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "sortOrder",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "zaraz workflow get": {
+    "operationId": "get-zones-zone_identifier-zaraz-workflow",
+    "httpMethod": "GET",
+    "path": "/zones/{zone_id}/settings/zaraz/workflow",
+    "pathParams": [
+      {
+        "name": "zone_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai get-model-schema": {
+    "operationId": "workers-ai-get-model-schema",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai/models/schema",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "model",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai finetunes list": {
+    "operationId": "workers-ai-list-finetunes",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai/finetunes",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-gateway gateways get": {
+    "operationId": "aig-config-fetch-gateway",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-gateway/gateways/{id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-gateway logs list": {
+    "operationId": "aig-config-list-gateway-logs",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "gateway_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "order_by",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "order_by_direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "filters",
+        "type": "array",
+        "required": false
+      },
+      {
+        "name": "meta_info",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "direction",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "start_date",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "end_date",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "min_cost",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max_cost",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "min_tokens_in",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max_tokens_in",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "min_tokens_out",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max_tokens_out",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "min_total_tokens",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max_total_tokens",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "min_duration",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "max_duration",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "feedback",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "success",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "cached",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "model",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "model_type",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "provider",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "request_content_type",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "response_content_type",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-gateway custom-domains list": {
+    "operationId": "aig-config-list-custom-domain",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/custom-domains",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "gateway_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-gateway gateways create": {
+    "operationId": "aig-config-create-gateway",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/ai-gateway/gateways",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "authentication",
+        "type": "boolean",
+        "required": false,
+        "description": "The authentication field"
+      },
+      {
+        "name": "byok-only",
+        "type": "boolean",
+        "required": false,
+        "description": "Requires customer-provided provider credentials and prevents fallback to Unified Billing."
+      },
+      {
+        "name": "cache-invalidate-on-update",
+        "type": "boolean",
+        "required": true,
+        "description": "The cache_invalidate_on_update field"
+      },
+      {
+        "name": "cache-ttl",
+        "type": "number",
+        "required": true,
+        "description": "The cache_ttl field"
+      },
+      {
+        "name": "collect-logs",
+        "type": "boolean",
+        "required": true,
+        "description": "The collect_logs field"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "description": "Unique identifier of the AI Gateway within the account."
+      },
+      {
+        "name": "log-management",
+        "type": "number",
+        "required": false,
+        "description": "The log_management field"
+      },
+      {
+        "name": "log-management-strategy",
+        "type": "string",
+        "required": false,
+        "description": "The log_management_strategy field"
+      },
+      {
+        "name": "logpush",
+        "type": "boolean",
+        "required": false,
+        "description": "The logpush field"
+      },
+      {
+        "name": "logpush-public-key",
+        "type": "string",
+        "required": false,
+        "description": "The logpush_public_key field"
+      },
+      {
+        "name": "rate-limiting-interval",
+        "type": "number",
+        "required": true,
+        "description": "The rate_limiting_interval field"
+      },
+      {
+        "name": "rate-limiting-limit",
+        "type": "number",
+        "required": true,
+        "description": "The rate_limiting_limit field"
+      },
+      {
+        "name": "rate-limiting-technique",
+        "type": "string",
+        "required": false,
+        "description": "The rate_limiting_technique field"
+      },
+      {
+        "name": "retry-backoff",
+        "type": "string",
+        "required": false,
+        "description": "Backoff strategy for retry delays"
+      },
+      {
+        "name": "retry-delay",
+        "type": "number",
+        "required": false,
+        "description": "Delay between retry attempts in milliseconds (0-60000)"
+      },
+      {
+        "name": "retry-max-attempts",
+        "type": "number",
+        "required": false,
+        "description": "Maximum number of retry attempts for failed requests (1-5)"
+      },
+      {
+        "name": "store-id",
+        "type": "string",
+        "required": false,
+        "description": "The store_id field"
+      },
+      {
+        "name": "workers-ai-billing-mode",
+        "type": "string",
+        "required": false,
+        "description": "Controls how Workers AI inference calls routed through this gateway are billed. 'postpaid' bills the account directly through Workers AI; 'unified' deducts credits via AI Gateway using neuron-based pricing and delegates billing to AI Gateway."
+      },
+      {
+        "name": "zdr",
+        "type": "boolean",
+        "required": false,
+        "description": "The zdr field"
+      }
+    ]
+  },
+  "ai-gateway gateways update": {
+    "operationId": "aig-config-update-gateway",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}/ai-gateway/gateways/{id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "authentication",
+        "type": "boolean",
+        "required": false,
+        "description": "The authentication field"
+      },
+      {
+        "name": "byok-only",
+        "type": "boolean",
+        "required": false,
+        "description": "Requires customer-provided provider credentials and prevents fallback to Unified Billing."
+      },
+      {
+        "name": "cache-invalidate-on-update",
+        "type": "boolean",
+        "required": true,
+        "description": "The cache_invalidate_on_update field"
+      },
+      {
+        "name": "cache-ttl",
+        "type": "number",
+        "required": true,
+        "description": "The cache_ttl field"
+      },
+      {
+        "name": "collect-logs",
+        "type": "boolean",
+        "required": true,
+        "description": "The collect_logs field"
+      },
+      {
+        "name": "guardrails-prompt-p1",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.P1 field"
+      },
+      {
+        "name": "guardrails-prompt-s1",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S1 field"
+      },
+      {
+        "name": "guardrails-prompt-s10",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S10 field"
+      },
+      {
+        "name": "guardrails-prompt-s11",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S11 field"
+      },
+      {
+        "name": "guardrails-prompt-s12",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S12 field"
+      },
+      {
+        "name": "guardrails-prompt-s13",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S13 field"
+      },
+      {
+        "name": "guardrails-prompt-s2",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S2 field"
+      },
+      {
+        "name": "guardrails-prompt-s3",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S3 field"
+      },
+      {
+        "name": "guardrails-prompt-s4",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S4 field"
+      },
+      {
+        "name": "guardrails-prompt-s5",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S5 field"
+      },
+      {
+        "name": "guardrails-prompt-s6",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S6 field"
+      },
+      {
+        "name": "guardrails-prompt-s7",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S7 field"
+      },
+      {
+        "name": "guardrails-prompt-s8",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S8 field"
+      },
+      {
+        "name": "guardrails-prompt-s9",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.prompt.S9 field"
+      },
+      {
+        "name": "guardrails-response-p1",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.P1 field"
+      },
+      {
+        "name": "guardrails-response-s1",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S1 field"
+      },
+      {
+        "name": "guardrails-response-s10",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S10 field"
+      },
+      {
+        "name": "guardrails-response-s11",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S11 field"
+      },
+      {
+        "name": "guardrails-response-s12",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S12 field"
+      },
+      {
+        "name": "guardrails-response-s13",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S13 field"
+      },
+      {
+        "name": "guardrails-response-s2",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S2 field"
+      },
+      {
+        "name": "guardrails-response-s3",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S3 field"
+      },
+      {
+        "name": "guardrails-response-s4",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S4 field"
+      },
+      {
+        "name": "guardrails-response-s5",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S5 field"
+      },
+      {
+        "name": "guardrails-response-s6",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S6 field"
+      },
+      {
+        "name": "guardrails-response-s7",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S7 field"
+      },
+      {
+        "name": "guardrails-response-s8",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S8 field"
+      },
+      {
+        "name": "guardrails-response-s9",
+        "type": "string",
+        "required": false,
+        "description": "The guardrails.response.S9 field"
+      },
+      {
+        "name": "log-classification",
+        "type": "boolean",
+        "required": false,
+        "description": "The log_classification field"
+      },
+      {
+        "name": "log-management",
+        "type": "number",
+        "required": false,
+        "description": "The log_management field"
+      },
+      {
+        "name": "log-management-strategy",
+        "type": "string",
+        "required": false,
+        "description": "The log_management_strategy field"
+      },
+      {
+        "name": "logpush",
+        "type": "boolean",
+        "required": false,
+        "description": "The logpush field"
+      },
+      {
+        "name": "logpush-public-key",
+        "type": "string",
+        "required": false,
+        "description": "The logpush_public_key field"
+      },
+      {
+        "name": "otel",
+        "type": "string",
+        "required": false,
+        "description": "The otel field. Provide as a JSON array of objects or @path/to/file.json."
+      },
+      {
+        "name": "rate-limiting-interval",
+        "type": "number",
+        "required": true,
+        "description": "The rate_limiting_interval field"
+      },
+      {
+        "name": "rate-limiting-limit",
+        "type": "number",
+        "required": true,
+        "description": "The rate_limiting_limit field"
+      },
+      {
+        "name": "rate-limiting-technique",
+        "type": "string",
+        "required": false,
+        "description": "The rate_limiting_technique field"
+      },
+      {
+        "name": "retry-backoff",
+        "type": "string",
+        "required": false,
+        "description": "Backoff strategy for retry delays"
+      },
+      {
+        "name": "retry-delay",
+        "type": "number",
+        "required": false,
+        "description": "Delay between retry attempts in milliseconds (0-60000)"
+      },
+      {
+        "name": "retry-max-attempts",
+        "type": "number",
+        "required": false,
+        "description": "Maximum number of retry attempts for failed requests (1-5)"
+      },
+      {
+        "name": "spend-limits-enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "The spend_limits.enabled field"
+      },
+      {
+        "name": "store-id",
+        "type": "string",
+        "required": false,
+        "description": "The store_id field"
+      },
+      {
+        "name": "stripe-authorization",
+        "type": "string",
+        "required": false,
+        "description": "The stripe.authorization field"
+      },
+      {
+        "name": "workers-ai-billing-mode",
+        "type": "string",
+        "required": false,
+        "description": "Controls how Workers AI inference calls routed through this gateway are billed. 'postpaid' bills the account directly through Workers AI; 'unified' deducts credits via AI Gateway using neuron-based pricing and delegates billing to AI Gateway."
+      },
+      {
+        "name": "zdr",
+        "type": "boolean",
+        "required": false,
+        "description": "The zdr field"
+      }
+    ]
+  },
+  "mcp portals read": {
+    "operationId": "mcp-portals-api-fetch-gateways",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/access/ai-controls/mcp/portals/{id}",
+    "pathParams": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "mcp servers list": {
+    "operationId": "mcp-portals-api-list-servers",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/access/ai-controls/mcp/servers",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "mcp portals tool-call-analytics": {
+    "operationId": "mcp-portals-api-portal-tool-call-timeseries",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/access/ai-controls/mcp/analytics/portals/{portal_id}/tool-calls/timeseries",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "portal_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "granularity",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "aggregate",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "tz",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "days",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "vectorize get": {
+    "operationId": "vectorize-get-vectorize-index",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "index_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "vectorize info": {
+    "operationId": "vectorize-index-info",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "index_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "vectorize metadata-index list": {
+    "operationId": "vectorize-list-metadata-indexes",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "index_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "vectorize create": {
+    "operationId": "vectorize-create-vectorize-index",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/vectorize/v2/indexes",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "config-dimensions",
+        "type": "number",
+        "required": false,
+        "description": "Specifies the number of dimensions for the index"
+      },
+      {
+        "name": "config-metric",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the type of metric to use calculating distance."
+      },
+      {
+        "name": "config-preset",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the preset to use for the index."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the description of the index."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "The name field"
+      }
+    ]
+  },
+  "ai-search get": {
+    "operationId": "ai-search-namespace-fetch-instance",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-search stats": {
+    "operationId": "ai-search-namespace-stats",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/stats",
+    "pathParams": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-search items list": {
+    "operationId": "ai-search-namespace-instance-list-items",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/items",
+    "pathParams": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "sort_by",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "source",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "metadata_filter",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "item_id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "key",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-search jobs list": {
+    "operationId": "ai-search-namespace-instance-list-jobs",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-search/namespaces/{name}/instances/{id}/jobs",
+    "pathParams": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "ai-search namespace list": {
+    "operationId": "ai-search-list-namespaces",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/ai-search/namespaces",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit apps get": {
+    "operationId": "get_app",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/apps/{app_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit analytics usage get": {
+    "operationId": "get-org-analytics",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/analytics/daywise",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "start_date",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "end_date",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit meetings list": {
+    "operationId": "get_all_meetings",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/meetings",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page_no",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "start_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "end_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime sfu apps get": {
+    "operationId": "calls-apps-retrieve-app-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/calls/apps/{app_id}",
+    "pathParams": [
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime sfu apps update": {
+    "operationId": "calls-apps-update-app-details",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}/calls/apps/{app_id}",
+    "pathParams": [
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "A short description of a Realtime SFU app, not shown to end users."
+      }
+    ]
+  },
+  "realtime moq relays get": {
+    "operationId": "moq-relays-get",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/moq/relays/{relay_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "relay_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime moq relays update": {
+    "operationId": "moq-relays-update",
+    "httpMethod": "PUT",
+    "path": "/accounts/{account_id}/moq/relays/{relay_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "relay_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "config-upstreams-enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "The config.upstreams.enabled field"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "The name field"
+      }
+    ]
+  },
+  "radar bots get": {
+    "operationId": "radar-get-bot-details",
+    "httpMethod": "GET",
+    "path": "/radar/bots/{bot_slug}",
+    "pathParams": [
+      {
+        "name": "bot_slug",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "format",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "radar bots list": {
+    "operationId": "radar-get-bots",
+    "httpMethod": "GET",
+    "path": "/radar/bots",
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "limit",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "botCategory",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "botOperator",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "kind",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "botVerificationStatus",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog get": {
+    "operationId": "basin-get-catalog-details",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog namespaces list": {
+    "operationId": "basin-list-namespaces",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}/namespaces",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page_token",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page_size",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "parent",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "return_uuids",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "return_details",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog namespaces tables list": {
+    "operationId": "basin-list-tables",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}/namespaces/{namespace}/tables",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "namespace",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page_token",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page_size",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "return_uuids",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "return_details",
+        "type": "boolean",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog maintenance-configs get": {
+    "operationId": "basin-get-maintenance-config",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog enable": {
+    "operationId": "basin-enable-catalog",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}/enable",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "basin-catalog maintenance-configs update": {
+    "operationId": "basin-update-maintenance-config",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/basin-catalog/{bucket_name}/maintenance-configs",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "bucket_name",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "compaction-state",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the state of maintenance operations."
+      },
+      {
+        "name": "compaction-target-size-mb",
+        "type": "string",
+        "required": false,
+        "description": "Sets the target file size for compaction in megabytes. Defaults to \"128\"."
+      },
+      {
+        "name": "snapshot-expiration-max-snapshot-age",
+        "type": "string",
+        "required": false,
+        "description": "Updates the maximum age for snapshots optionally."
+      },
+      {
+        "name": "snapshot-expiration-min-snapshots-to-keep",
+        "type": "number",
+        "required": false,
+        "description": "Updates the minimum number of snapshots to retain optionally."
+      },
+      {
+        "name": "snapshot-expiration-state",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the state of maintenance operations."
+      }
+    ]
+  }
+}

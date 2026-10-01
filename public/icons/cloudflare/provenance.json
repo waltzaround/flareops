@@ -1,0 +1,16 @@
+{
+  "source": "https://dash.cloudflare.com/assets/combined-icons.Byg9IfGZ.svg",
+  "retrieved": "2026-10-01",
+  "symbolCount": 115,
+  "attribution": "Cloudflare dashboard icons. Original SVG paths and view boxes preserved.",
+  "license": "No license declaration was included in the downloaded sprite.",
+  "inlineNavigationIcons": {
+    "source": "https://dash.cloudflare.com/",
+    "retrieved": "2026-10-01",
+    "icons": [
+      "caret-right",
+      "realtime"
+    ],
+    "note": "SVG paths observed in rendered sidebar DOM; used in cloudflare-icons.tsx."
+  }
+}

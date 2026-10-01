@@ -1,0 +1,11 @@
+[
+ {"name":"valid JSON","stdout":"{\"result\":[{\"id\":\"abc\",\"name\":\"edge\"}]}","stderr":"","code":0,"success":true},
+ {"name":"stderr with valid stdout","stdout":"[]","stderr":"Loading resources…","code":0,"success":true},
+ {"name":"auth failure","stdout":"","stderr":"401 authentication failed","code":1,"success":false,"message":"Not authenticated"},
+ {"name":"permission error","stdout":"","stderr":"403 permission denied","code":1,"success":false,"message":"Permission denied"},
+ {"name":"unknown command","stdout":"","stderr":"unknown command","code":1,"success":false,"message":"CLI command unavailable"},
+ {"name":"malformed JSON","stdout":"not JSON","stderr":"","code":0,"success":false,"message":"CLI output incompatible"},
+ {"name":"timeout","stdout":"","stderr":"","code":-1,"success":false,"failure":"Command timed out","message":"timed out"},
+ {"name":"cancelled process","stdout":"","stderr":"","code":-1,"success":false,"failure":"Command cancelled","message":"cancelled"},
+ {"name":"sensitive fields","stdout":"{\"access_token\":\"do-not-store\",\"nested\":{\"secret\":\"private-value\"}}","stderr":"Authorization: Bearer private-value","code":0,"success":true}
+]
