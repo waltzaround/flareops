@@ -1,0 +1,39 @@
+.ai-items article.tunnel-resource {
+  align-items: center;
+}
+.ai-items article > .tunnel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  max-width: 220px;
+  padding: 4px 10px;
+  border: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+.ai-items article > .tunnel-status--healthy {
+  color: var(--green);
+}
+.ai-items article > .tunnel-status--warning {
+  color: #e2b55a;
+}
+.ai-items article > .tunnel-status--danger {
+  color: var(--danger);
+}
+.tunnel-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+:root[data-theme="light"] .ai-items article > .tunnel-status--warning {
+  color: #916000;
+}

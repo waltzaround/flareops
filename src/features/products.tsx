@@ -1,3 +1,4 @@
+import { TunnelStatus } from "../components/tunnel-status";
 import {
   UnsupportedFeature,
   DashboardLink,
@@ -50,7 +51,7 @@ export function Product({
               {
                 id: `sample-${page}`,
                 name: `Sample ${page}`,
-                detail: "Demo data",
+                detail: page === "Tunnels" ? "healthy" : "Demo data",
               },
             ],
             hasNext: false,
@@ -166,12 +167,19 @@ export function Product({
           ) : rows.length ? (
             <div className="ai-items">
               {rows.map((row) => (
-                <article key={row.id}>
+                <article
+                  key={row.id}
+                  className={page === "Tunnels" ? "tunnel-resource" : undefined}
+                >
                   <div>
                     <h2>{row.name}</h2>
                     <code>{row.id}</code>
                   </div>
-                  <span>{row.detail}</span>
+                  {page === "Tunnels" ? (
+                    <TunnelStatus status={row.detail} />
+                  ) : (
+                    <span>{row.detail}</span>
+                  )}
                   <ResourceTools page={page} id={row.id} name={row.name} />
                 </article>
               ))}
