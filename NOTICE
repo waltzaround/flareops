@@ -1,0 +1,15 @@
+FlareOps
+Copyright (C) 2026 Walter Lim
+
+FlareOps original code is licensed under the GNU Affero General Public License,
+version 3 only (AGPL-3.0-only). See LICENSE for the full terms.
+
+FlareOps is distributed without any warranty, including implied warranties of
+merchantability or fitness for a particular purpose.
+
+Source code and build instructions: https://github.com/waltzaround/flareops
+Release source: use the tag matching your installed version.
+
+Third-party dependencies and assets retain their respective licenses and
+copyright notices. This license does not relicense Cloudflare tooling, Node.js,
+or other third-party material. Bundled runtime notices are in cf-runtime.

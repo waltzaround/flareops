@@ -118,3 +118,11 @@ References: [GraphQL Analytics API](https://developers.cloudflare.com/analytics/
 ## GitHub Actions releases
 
 See [RELEASES.md](RELEASES.md) for the build matrix, version/tag process, signing secrets, draft releases, and website download integration. Push a matching `v<version>` tag to prepare a draft release; a manual workflow run produces preview artifacts. Each complete release contains platform installers, `downloads.json`, and SHA-256 checksums.
+
+## License
+
+FlareOps is open source under the [GNU Affero General Public License v3.0 only](LICENSE) (`AGPL-3.0-only`). Copyright (C) 2026 Walter Lim.
+
+Commercial use is allowed. Distribution of covered software requires compliance with AGPLv3, including providing corresponding source. Modified versions that support remote network interaction must offer their corresponding source to those users under section 13. See the full license for the terms; this summary does not replace it.
+
+This license applies to FlareOps original code, including the initial public beta. Third-party dependencies and assets retain their own licenses; see [NOTICE](NOTICE). FlareOps comes without warranty.

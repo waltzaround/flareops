@@ -35,6 +35,13 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "license": "AGPL-3.0-only",
+    "licenseFile": "../LICENSE",
+    "copyright": "Copyright (C) 2026 Walter Lim",
+    "resources": {
+      "../LICENSE": "LICENSE",
+      "../NOTICE": "NOTICE"
+    }
   }
 }

@@ -17,3 +17,7 @@ A desktop workspace for Cloudflare. Includes Node and the official `cf` CLI; no 
 - Install and launch each platform build on a clean machine; verify the bundled CLI and sign-in.
 - Inspect `downloads.json`: macOS builds are unsigned unless Apple signing is enabled. Windows signing is not yet configured. Resolve signing requirements before promoting these builds as general public downloads.
 - Publish the release when ready. Draft assets are not publicly downloadable.
+
+### License and source
+
+FlareOps is licensed under AGPL-3.0-only. The matching source is available through this release's source archives and tag in [waltzaround/flareops](https://github.com/waltzaround/flareops). Build instructions are in README.md. Third-party components retain their own licenses.
