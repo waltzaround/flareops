@@ -3542,5 +3542,391 @@
         "description": "Specifies the state of maintenance operations."
       }
     ]
+  },
+  "realtime kit sessions list": {
+    "operationId": "GetSessions",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/sessions",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "page_no",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "sort_by",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "sort_order",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "start_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "end_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "participants",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "associated_id",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit recordings list": {
+    "operationId": "get_all_recordings",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/recordings",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "meeting_id",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "page_no",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "expired",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "sort_by",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "sort_order",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "start_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "end_time",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "status",
+        "type": "array",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit presets list": {
+    "operationId": "get-presets",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/presets",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "per_page",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "page_no",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit meetings get": {
+    "operationId": "get_meeting",
+    "httpMethod": "GET",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/meetings/{meeting_id}",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "meeting_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "hasRequestBody": false,
+    "requestBodyFields": []
+  },
+  "realtime kit meetings create": {
+    "operationId": "create_meeting",
+    "httpMethod": "POST",
+    "path": "/accounts/{account_id}/realtime/kit/{app_id}/meetings",
+    "pathParams": [
+      {
+        "name": "account_id",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "app_id",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "queryParams": [],
+    "hasRequestBody": true,
+    "requestBodyFields": [
+      {
+        "name": "ai-config-summarization-summary-type",
+        "type": "string",
+        "required": false,
+        "description": "Defines the style of the summary, such as general, team meeting, or sales call."
+      },
+      {
+        "name": "ai-config-summarization-text-format",
+        "type": "string",
+        "required": false,
+        "description": "Determines the text format of the summary, such as plain text or markdown."
+      },
+      {
+        "name": "ai-config-summarization-word-limit",
+        "type": "number",
+        "required": false,
+        "description": "Sets the maximum number of words in the meeting summary."
+      },
+      {
+        "name": "ai-config-transcription-keywords",
+        "type": "string",
+        "required": false,
+        "description": "Adds specific terms to improve accurate detection during transcription."
+      },
+      {
+        "name": "ai-config-transcription-language",
+        "type": "string",
+        "required": false,
+        "description": "Specifies the language code for transcription to ensure accurate results."
+      },
+      {
+        "name": "ai-config-transcription-profanity-filter",
+        "type": "boolean",
+        "required": false,
+        "description": "Control the inclusion of offensive language in transcriptions."
+      },
+      {
+        "name": "live-stream-on-start",
+        "type": "boolean",
+        "required": false,
+        "description": "Specifies if the meeting should start getting livestreamed on start."
+      },
+      {
+        "name": "persist-chat",
+        "type": "boolean",
+        "required": false,
+        "description": "If a meeting is set to persist_chat, meeting chat would remain for a week within the meeting space."
+      },
+      {
+        "name": "record-on-start",
+        "type": "boolean",
+        "required": false,
+        "description": "Specifies if the meeting should start getting recorded as soon as someone joins the meeting."
+      },
+      {
+        "name": "recording-config-audio-config-channel",
+        "type": "string",
+        "required": false,
+        "description": "Audio signal pathway within an audio file that carries a specific sound source."
+      },
+      {
+        "name": "recording-config-audio-config-codec",
+        "type": "string",
+        "required": false,
+        "description": "Codec using which the recording will be encoded. If VP8/VP9 is selected for videoConfig, changing audioConfig is not allowed. In this case, the codec in the audioConfig is automatically set to vorbis."
+      },
+      {
+        "name": "recording-config-audio-config-export-file",
+        "type": "boolean",
+        "required": false,
+        "description": "Controls whether to export audio file seperately"
+      },
+      {
+        "name": "recording-config-file-name-prefix",
+        "type": "string",
+        "required": false,
+        "description": "Adds a prefix to the beginning of the file name of the recording."
+      },
+      {
+        "name": "recording-config-live-streaming-config-rtmp-url",
+        "type": "string",
+        "required": false,
+        "description": "RTMP URL to stream to"
+      },
+      {
+        "name": "recording-config-max-seconds",
+        "type": "number",
+        "required": false,
+        "description": "Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours."
+      },
+      {
+        "name": "recording-config-realtimekit-bucket-config-enabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Controls whether recordings are uploaded to RealtimeKit's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+      },
+      {
+        "name": "recording-config-video-config-codec",
+        "type": "string",
+        "required": false,
+        "description": "Codec using which the recording will be encoded."
+      },
+      {
+        "name": "recording-config-video-config-export-file",
+        "type": "boolean",
+        "required": false,
+        "description": "Controls whether to export video file seperately"
+      },
+      {
+        "name": "recording-config-video-config-height",
+        "type": "number",
+        "required": false,
+        "description": "Height of the recording video in pixels"
+      },
+      {
+        "name": "recording-config-video-config-watermark-position",
+        "type": "string",
+        "required": false,
+        "description": "Position of the watermark"
+      },
+      {
+        "name": "recording-config-video-config-watermark-url",
+        "type": "string",
+        "required": false,
+        "description": "URL of the watermark image"
+      },
+      {
+        "name": "recording-config-video-config-width",
+        "type": "number",
+        "required": false,
+        "description": "Width of the recording video in pixels"
+      },
+      {
+        "name": "session-keep-alive-time-in-secs",
+        "type": "number",
+        "required": false,
+        "description": "Time in seconds, for which a session remains active, after the last participant has left the meeting."
+      },
+      {
+        "name": "summarize-on-end",
+        "type": "boolean",
+        "required": false,
+        "description": "Automatically generate summary of meetings using transcripts. Requires Transcriptions to be enabled, and can be retrieved via Webhooks or summary API."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "Title of the meeting"
+      },
+      {
+        "name": "transcribe-on-end",
+        "type": "boolean",
+        "required": false,
+        "description": "Automatically generate transcripts when the meeting ends."
+      }
+    ]
   }
 }

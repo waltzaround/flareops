@@ -1,4 +1,5 @@
 import bundledSchemas from "../lib/page-operation-schemas.json";
+import "./page-operations.css";
 import type { CommandSchema, Parameter } from "../lib/types";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -6,6 +7,7 @@ import { getSchema, prepare, runPlan, unwrap } from "../lib/cf";
 import {
   operationParameters,
   operationRequest,
+  resourceReadRequest,
   type PageOperation,
 } from "../lib/page-operations";
 import type { Request } from "../lib/types";
@@ -17,6 +19,10 @@ import { CommandReview } from "./command-review";
 
 function OperationResult({ data }: { data: unknown }) {
   const value = unwrap(data);
+  const record =
+    value && typeof value === "object" && !Array.isArray(value)
+      ? (value as Record<string, unknown>)
+      : null;
   const rows = Array.isArray(value)
     ? value
     : value &&
@@ -71,12 +77,29 @@ function OperationResult({ data }: { data: unknown }) {
             </table>
           </div>
         </>
+      ) : record ? (
+        <dl className="operation-properties">
+          {Object.entries(record).map(([key, value]) => (
+            <div key={key}>
+              <dt>{key.replaceAll("_", " ")}</dt>
+              <dd>
+                {value && typeof value === "object" ? (
+                  <pre>{JSON.stringify(value, null, 2)}</pre>
+                ) : (
+                  text(value)
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ) : value == null ? (
+        <p>Operation completed. No response body was returned.</p>
       ) : (
         <pre>
           {typeof value === "string" ? value : JSON.stringify(value, null, 2)}
         </pre>
       )}
-      {rows && (
+      {(rows || record) && (
         <details>
           <summary>Full response</summary>
           <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -88,9 +111,11 @@ function OperationResult({ data }: { data: unknown }) {
 function OperationForm({
   operation,
   initialValues,
+  resourceMode = false,
 }: {
   operation: PageOperation;
   initialValues: Record<string, string>;
+  resourceMode?: boolean;
 }) {
   const { account, mode, zone, setZone } = useUI();
   const zones = useResources("Zones");
@@ -110,10 +135,49 @@ function OperationForm({
   const [body, setBody] = useState(
     operation.sql ? "SELECT * FROM your_dataset LIMIT 100 FORMAT JSON" : "{}",
   );
+  const [meeting, setMeeting] = useState({
+    title: "",
+    persist_chat: "",
+    record_on_start: "",
+  });
+  const createsMeeting = operation.command === "realtime kit meetings create";
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
   const [result, setResult] = useState<{ data: unknown }>();
   const [review, setReview] = useState<Request | null>(null);
+  const initialRead = resourceMode
+    ? resourceReadRequest(
+        operation,
+        schema.data,
+        {
+          profile: account.profile,
+          accountId: account.id,
+          zoneId: zone || undefined,
+        },
+        initialValues,
+      )
+    : undefined;
+  const details = useQuery({
+    queryKey: ["resource-operation", mode, initialRead],
+    enabled: !!initialRead,
+    retry: false,
+    staleTime: 30_000,
+    queryFn: async () => {
+      if (!initialRead)
+        throw Error("Select an operation and supply its required fields.");
+      const plan = await prepare(initialRead);
+      if (plan.classification !== "Read")
+        throw Error(
+          "This operation requires review. Use Review change to continue.",
+        );
+      const execution = await runPlan(plan, false, false);
+      if (!execution.success)
+        throw Error(
+          execution.error || "Cloudflare could not load this resource.",
+        );
+      return { data: execution.data };
+    },
+  });
   async function submit() {
     if (!schema.data || busy) return;
     setError(undefined);
@@ -129,7 +193,17 @@ function OperationForm({
           zoneId: zone || undefined,
         },
         values,
-        body,
+        createsMeeting
+          ? JSON.stringify({
+              ...(meeting.title.trim() ? { title: meeting.title.trim() } : {}),
+              ...(meeting.persist_chat
+                ? { persist_chat: meeting.persist_chat === "true" }
+                : {}),
+              ...(meeting.record_on_start
+                ? { record_on_start: meeting.record_on_start === "true" }
+                : {}),
+            })
+          : body,
       );
       const plan = await prepare(request);
       if (plan.classification !== "Read") {
@@ -158,7 +232,7 @@ function OperationForm({
     const required = !!p.required || !!operation.required?.includes(p.name);
     return (
       <label className="field" key={p.name}>
-        {p.name.replaceAll("_", " ")}
+        {p.name.replaceAll("_", " ").replaceAll("-", " ")}
         {required ? " *" : ""}
         {p.enum || p.type === "boolean" ? (
           <select
@@ -175,6 +249,11 @@ function OperationForm({
           </select>
         ) : (
           <input
+            readOnly={
+              resourceMode &&
+              !!initialValues[p.name] &&
+              schema.data.pathParams.some((field) => field.name === p.name)
+            }
             required={required}
             type={["number", "integer"].includes(p.type) ? "number" : "text"}
             step={p.type === "integer" ? 1 : "any"}
@@ -232,7 +311,42 @@ function OperationForm({
             </div>
           </details>
         )}
-        {(schema.data.hasRequestBody || operation.sql) && (
+        {createsMeeting && (
+          <fieldset className="meeting-configuration">
+            <legend>New meeting</legend>
+            <label className="field">
+              Meeting title
+              <input
+                value={meeting.title}
+                onChange={(e) =>
+                  setMeeting({ ...meeting, title: e.target.value })
+                }
+                placeholder="Weekly team meeting"
+              />
+            </label>
+            {(
+              [
+                ["persist_chat", "Keep meeting chat"],
+                ["record_on_start", "Record when the meeting starts"],
+              ] as const
+            ).map(([key, label]) => (
+              <label className="field" key={key}>
+                {label}
+                <select
+                  value={meeting[key]}
+                  onChange={(e) =>
+                    setMeeting({ ...meeting, [key]: e.target.value })
+                  }
+                >
+                  <option value="">Use service default</option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </label>
+            ))}
+          </fieldset>
+        )}
+        {!createsMeeting && (schema.data.hasRequestBody || operation.sql) && (
           <label className="field">
             {operation.sql ? "SQL query" : "Configuration (JSON)"}
             <textarea
@@ -242,12 +356,10 @@ function OperationForm({
               value={body}
               onChange={(e) => setBody(e.target.value)}
             />
-            {!operation.sql && schema.data.requestBodyFields.length > 0 && (
+            {!operation.sql && (
               <small>
-                Fields:{" "}
-                {schema.data.requestBodyFields
-                  .map((f) => `${f.name}${f.required ? " (required)" : ""}`)
-                  .join(", ")}
+                Use API property names and nested objects for this
+                configuration.
               </small>
             )}
           </label>
@@ -257,17 +369,29 @@ function OperationForm({
         )}
         <Button
           type="submit"
-          disabled={!account.id || busy || (needsZone && !zone)}
+          disabled={
+            !account.id || busy || details.isFetching || (needsZone && !zone)
+          }
         >
-          {busy
+          {busy || details.isFetching
             ? "Running…"
             : schema.data.httpMethod === "GET" || operation.sql
-              ? "Run"
+              ? resourceMode
+                ? "Refresh results"
+                : "Run"
               : "Review change"}
         </Button>
       </form>
       {!!error && <ErrorBox error={error} />}
-      {result && <OperationResult data={result.data} />}
+      <div aria-live="polite">
+        {details.isFetching && !result && <Loading />}
+      </div>
+      {!result && details.isError && (
+        <ErrorBox error={details.error} retry={() => void details.refetch()} />
+      )}
+      {(result || details.data) && (
+        <OperationResult data={(result || details.data)!.data} />
+      )}
       <CommandReview request={review} onClose={() => setReview(null)} />
     </div>
   );
@@ -275,9 +399,11 @@ function OperationForm({
 export function PageOperations({
   operations,
   initialValues = {},
+  resourceMode = false,
 }: {
   operations: PageOperation[];
   initialValues?: Record<string, string>;
+  resourceMode?: boolean;
 }) {
   const { account, mode, zone } = useUI();
   const [selected, setSelected] = useState(operations[0].command);
@@ -285,7 +411,7 @@ export function PageOperations({
     operations.find((o) => o.command === selected) ?? operations[0];
   return (
     <section className="page-operations">
-      <h2>Tools</h2>
+      <h2>{resourceMode ? "Details & actions" : "Tools"}</h2>
       <label className="field">
         Operation
         <select
@@ -303,6 +429,7 @@ export function PageOperations({
         key={`${operation.command}-${account.id}-${account.profile}-${mode}-${zone}`}
         operation={operation}
         initialValues={initialValues}
+        resourceMode={resourceMode}
       />
     </section>
   );

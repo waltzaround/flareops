@@ -1,0 +1,96 @@
+/* Resource forms are rendered in portals, outside the workspace shell. */
+.dialog.resource-tools-dialog {
+  overflow: hidden;
+  max-height: min(90dvh, 900px);
+}
+.resource-tools-dialog > .dialog-heading,
+.resource-tools-dialog > .dialog-footer {
+  flex-shrink: 0;
+}
+.resource-tools-dialog > .dialog-heading > div {
+  min-width: 0;
+}
+.resource-tools-dialog .dialog-heading p {
+  overflow-wrap: anywhere;
+}
+.resource-tools-dialog > .dialog-body {
+  min-height: 0;
+  padding: 24px;
+}
+.resource-tools-dialog .page-operations {
+  margin: 0;
+}
+.resource-tools-dialog .field {
+  margin: 0;
+  gap: 8px;
+}
+.resource-tools-dialog .page-operations > .field {
+  max-width: none;
+  margin-bottom: 20px;
+}
+.resource-tools-dialog .operation-fields {
+  gap: 16px;
+}
+.resource-tools-dialog .operation-form form {
+  gap: 20px;
+}
+.resource-tools-dialog input,
+.resource-tools-dialog select {
+  min-height: 40px;
+  width: 100%;
+}
+.resource-tools-dialog input[readonly] {
+  color: var(--muted);
+  background: var(--panel);
+}
+.resource-tools-dialog .operation-options {
+  padding: 12px 0;
+}
+.resource-tools-dialog .operation-options > summary {
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.operation-properties {
+  margin: 16px 0;
+}
+.operation-properties > div {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(0, 3fr);
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.operation-properties dt {
+  color: var(--muted);
+  text-transform: capitalize;
+}
+.operation-properties dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.operation-properties dd pre {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .resource-tools-dialog > .dialog-body {
+    padding: 18px;
+  }
+  .operation-properties > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.meeting-configuration {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.meeting-configuration legend {
+  padding: 0 6px;
+  font-weight: 500;
+}

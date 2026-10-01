@@ -73,6 +73,11 @@ export const pageOperations: Record<string, PageOperation[]> = {
     op("Application details", "realtime kit apps get"),
     op("Usage analytics", "realtime kit analytics usage get"),
     op("Meetings", "realtime kit meetings list"),
+    op("Meeting details", "realtime kit meetings get"),
+    op("Sessions", "realtime kit sessions list"),
+    op("Recordings", "realtime kit recordings list"),
+    op("Presets", "realtime kit presets list"),
+    op("Create meeting", "realtime kit meetings create"),
   ],
   "Serverless SFU": [
     op("Application details", "realtime sfu apps get"),
@@ -191,6 +196,26 @@ export function operationParameters(schema: CommandSchema) {
   return [...schema.pathParams, ...schema.queryParams].filter(
     (p) => !contextFields.has(p.name),
   );
+}
+// Only complete GET requests may run automatically when opening a resource.
+export function resourceReadRequest(
+  operation: PageOperation,
+  schema: CommandSchema | undefined,
+  context: Context,
+  values: Record<string, string>,
+): Request | undefined {
+  if (
+    !schema ||
+    schema.httpMethod !== "GET" ||
+    schema.hasRequestBody ||
+    operation.sql
+  )
+    return undefined;
+  try {
+    return operationRequest(operation, schema, context, values, "{}");
+  } catch {
+    return undefined;
+  }
 }
 export function operationRequest(
   operation: PageOperation,

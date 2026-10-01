@@ -78,8 +78,12 @@ export function CommandReview({
       else setResult(e);
       if (!e.success) setError(e.error);
       await queryClient.invalidateQueries({ queryKey: ["history"] });
-      if (e.success && !dryRun)
-        await queryClient.invalidateQueries({ queryKey: ["resources"] });
+      if (e.success && !dryRun) {
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: ["resources"] }),
+          queryClient.invalidateQueries({ queryKey: ["resource-operation"] }),
+        ]);
+      }
     } catch (e) {
       setError(e);
     } finally {

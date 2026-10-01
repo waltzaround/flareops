@@ -4,6 +4,7 @@ import schemas from "./page-operation-schemas.json";
 import {
   operationParameters,
   resourceOperationValues,
+  resourceReadRequest,
 } from "./page-operations";
 import type { CommandSchema } from "./types";
 const context = { accountId: "account", profile: "profile", zoneId: "zone" };
@@ -23,6 +24,54 @@ const schema: CommandSchema = {
 };
 const operation = { label: "Read", command: "example get" };
 describe("native page operations", () => {
+  it("only automatically loads complete reads in the selected account", () => {
+    const details = pageOperations.RealtimeKit[0];
+    const definition = (schemas as Record<string, CommandSchema>)[
+      details.command
+    ];
+    expect(
+      resourceReadRequest(details, definition, context, { app_id: "app-123" }),
+    ).toMatchObject({
+      context: { accountId: "account", profile: "profile" },
+      parameters: { app_id: "app-123" },
+    });
+    expect(
+      resourceReadRequest(details, definition, context, {}),
+    ).toBeUndefined();
+    expect(
+      resourceReadRequest(
+        details,
+        definition,
+        { ...context, accountId: "" },
+        { app_id: "app-123" },
+      ),
+    ).toBeUndefined();
+    expect(
+      resourceReadRequest(details, undefined, context, { app_id: "app-123" }),
+    ).toBeUndefined();
+    const create = pageOperations.RealtimeKit.find((o) =>
+      o.command.endsWith("create"),
+    )!;
+    expect(
+      resourceReadRequest(
+        create,
+        (schemas as Record<string, CommandSchema>)[create.command],
+        context,
+        { app_id: "app-123" },
+      ),
+    ).toBeUndefined();
+    const meeting = pageOperations.RealtimeKit.find(
+      (o) => o.command === "realtime kit meetings get",
+    )!;
+    expect(
+      resourceReadRequest(
+        meeting,
+        (schemas as Record<string, CommandSchema>)[meeting.command],
+        context,
+        { app_id: "app-123" },
+      ),
+    ).toBeUndefined();
+  });
   it("prefills resource identifiers and preserves the AI Search namespace", () => {
     expect(
       resourceOperationValues("AI Search", "search-id", "production"),

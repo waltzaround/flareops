@@ -34,13 +34,19 @@ export function ResourceTools({
         description={`${page} · ${id}`}
         className="resource-tools-dialog"
       >
-        {open && (
-          <PageOperations
-            key={`${id}-${namespace}`}
-            operations={operations}
-            initialValues={initialValues}
-          />
-        )}
+        <div className="dialog-body">
+          {open && (
+            <PageOperations
+              key={`${id}-${namespace}`}
+              operations={operations}
+              initialValues={initialValues}
+              resourceMode
+            />
+          )}
+        </div>
+        <div className="dialog-footer">
+          <Button onClick={() => setOpen(false)}>Close</Button>
+        </div>
       </Dialog>
     </>
   );
