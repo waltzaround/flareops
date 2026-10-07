@@ -178,3 +178,5 @@ mocked APIs; live Access and resource provisioning have not yet been verified.
 
 References: [Access for Workers](https://developers.cloudflare.com/workers/configuration/cloudflare-access/)
 and [preview resource isolation](https://developers.cloudflare.com/workers/previews/resources/).
+
+Website deployment selects the account through `CLOUDFLARE_ACCOUNT_ID` in the local environment; the tracked deployment config contains no account identifier. Keep deployment credentials in local environment variables or repository secrets.
