@@ -1,0 +1,219 @@
+/* Shared sizing contract for forms, object lists, and embedded resource panels. */
+:root {
+  --control-height: 40px;
+  --control-compact: 32px;
+  --control-radius: 8px;
+}
+
+:is(.workspace-shell, .dialog, .sheet)
+  :is(
+    input:where(
+      :not([type="checkbox"]):not([type="radio"]):not([type="range"]):not(
+          [type="file"]
+        )
+    ),
+    select
+  ) {
+  height: var(--control-height);
+  min-height: var(--control-height);
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 20px;
+}
+:is(.workspace-shell, .dialog, .sheet) select {
+  appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m8 10 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+:is(.workspace-shell, .dialog, .sheet) .button {
+  height: var(--control-height);
+  min-height: var(--control-height);
+  padding: 0 14px;
+  line-height: 20px;
+  border-radius: var(--control-radius);
+  flex-shrink: 0;
+}
+:is(.workspace-shell, .dialog, .sheet) :is(.button-sm, .button-icon) {
+  height: var(--control-compact);
+  min-height: var(--control-compact);
+  padding: 0 10px;
+}
+:is(.workspace-shell, .dialog, .sheet) .button-icon {
+  width: var(--control-compact);
+  padding: 0;
+}
+:is(.workspace-shell, .dialog, .sheet) textarea {
+  padding: 10px 12px;
+  line-height: 20px;
+  font-size: 13px;
+  border-radius: var(--control-radius);
+}
+
+.list-toolbar,
+.filter-card,
+.stream-filters,
+.ai-namespace {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  margin: 0 0 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.filter-card,
+.stream-filters,
+.ai-namespace {
+  align-items: flex-end;
+}
+.filter-card .field,
+.stream-filters .field {
+  margin: 0;
+}
+.list-toolbar > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.list-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 240px;
+  min-width: 160px;
+  max-width: 480px;
+  height: var(--control-height);
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius);
+  background: var(--bg);
+  color: var(--muted);
+  transition:
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease;
+}
+.list-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+/* The wrapper owns the border and padding; the input must not add a second box. */
+:is(.workspace-shell, .dialog, .sheet)
+  :is(.list-search, .search-field, .log-search, .palette-input)
+  input {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.list-search > button {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 5px;
+  color: var(--muted);
+}
+.list-search > button:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+.list-toolbar .list-refresh {
+  margin-left: auto;
+}
+.list-toolbar > span + .list-refresh {
+  margin-left: 0;
+}
+.zone-picker {
+  position: relative;
+  flex: 0 1 220px;
+  min-width: 180px;
+}
+.zone-picker > svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.workspace-shell .zone-picker select {
+  width: 100%;
+  padding-left: 38px;
+  font-weight: 500;
+}
+@media (max-width: 700px) {
+  .zone-picker {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+}
+.workspace-shell .resources-page .table-wrap,
+.native-read-table {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: auto;
+}
+.workspace-shell .resources-page th,
+.native-read-table th {
+  background: var(--panel);
+}
+.ai-items {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ai-items > article {
+  padding: 18px 20px;
+  align-items: center;
+}
+.ai-items > article:last-child {
+  border-bottom: 0;
+}
+.deployment-pagination {
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .list-toolbar,
+  .filter-card,
+  .stream-filters,
+  .ai-namespace {
+    padding: 12px;
+    gap: 10px;
+  }
+  .list-search {
+    flex-basis: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+  .list-toolbar > span {
+    margin-left: 0;
+  }
+  .list-toolbar > span + .list-refresh {
+    margin-left: auto;
+  }
+  .ai-items > article {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+  }
+}

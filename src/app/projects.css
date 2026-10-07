@@ -1,0 +1,277 @@
+.workspace-shell .projects-page {
+  max-width: 1000px;
+}
+.project-intro {
+  text-align: center;
+  margin: 56px auto 28px;
+  max-width: 560px;
+}
+.project-mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 22px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--panel);
+}
+.project-intro h2 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  font-weight: 550;
+}
+.project-intro p {
+  color: var(--muted);
+  margin-top: 12px;
+}
+.project-composer {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--panel);
+  padding: 22px;
+  box-shadow: 0 8px 30px #00000008;
+}
+.project-prompt-label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.project-composer textarea {
+  width: 100%;
+  min-height: 140px;
+  background: var(--bg);
+  resize: vertical;
+}
+.project-composer-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
+}
+.project-composer-footer > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.project-starters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 18px 0 42px;
+}
+.project-list {
+  margin-top: 32px;
+}
+.project-list h2 {
+  font-size: 16px;
+  margin-bottom: 18px;
+}
+.project-list h2 > span {
+  color: var(--muted);
+  margin-left: 8px;
+}
+.project-list > p {
+  padding: 28px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.project-list > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.project-list > button:hover {
+  background: var(--panel);
+}
+.project-list > button > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.project-list strong,
+.project-list small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.project-list small {
+  margin-top: 5px;
+  color: var(--muted);
+}
+.project-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--muted);
+  margin: 24px 0;
+  font-size: 12px;
+}
+.project-thread article {
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.project-thread header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+.project-thread time {
+  color: var(--muted);
+}
+.project-thread p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.project-connection {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 24px 0;
+  padding: 18px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+.project-connection p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.cloudflare-sections {
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 700px) {
+  .project-intro {
+    margin-top: 24px;
+  }
+  .project-intro h2 {
+    font-size: 25px;
+  }
+  .project-composer {
+    padding: 16px;
+  }
+  .project-composer-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .project-composer-footer .button {
+    align-self: flex-end;
+  }
+}
+
+.project-provider-row {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+.provider-form {
+  padding: 0 24px 24px;
+  display: grid;
+  gap: 18px;
+}
+.provider-form label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.provider-form input,
+.provider-form select {
+  width: 100%;
+  min-width: 0;
+}
+.provider-form p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.provider-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 6px;
+}
+.project-thread article > small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.project-provider-row {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.harness-run {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 24px 0;
+}
+.harness-run header,
+.harness-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.harness-run header {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.harness-run article {
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+  margin-top: 16px;
+}
+.harness-run article small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+.harness-run article p {
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 13px;
+}
+.harness-repository {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 12px;
+}
+.harness-events {
+  list-style: none;
+  padding: 0;
+  font-size: 12px;
+  display: grid;
+  gap: 10px;
+}
+.harness-events time {
+  color: var(--muted);
+  margin-right: 12px;
+}
+.harness-review {
+  padding: 0 24px 24px;
+}
+.harness-review pre {
+  max-height: 50vh;
+  overflow: auto;
+  font-size: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  white-space: pre;
+}

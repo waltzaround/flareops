@@ -1,10 +1,15 @@
+import {
+  ListToolbar,
+  ListSearch,
+  ListRefresh,
+} from "../components/list-toolbar";
 import { AgentTraces } from "./account-reads";
 import { PageOperations } from "./page-operations";
 import { ResourceTools } from "./resource-tools";
 import { pageOperations } from "../lib/page-operations";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight, RefreshCw, Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import {
   aiChildren,
   aiCommands,
@@ -117,13 +122,6 @@ function AIList({ page }: { page: AIChild }) {
           <h1>{page}</h1>
           <p>{aiDescriptions[page]}</p>
         </div>
-        <Button
-          disabled={!account.id || query.isFetching}
-          onClick={() => void query.refetch()}
-        >
-          <RefreshCw size={14} />
-          Refresh
-        </Button>
       </div>
       {page === "AI Search" && (
         <form
@@ -152,17 +150,22 @@ function AIList({ page }: { page: AIChild }) {
           initialValues={page === "AI Search" ? { name: namespace } : undefined}
         />
       )}
-      <div className="log-filters">
-        <label className="log-search">
-          <input
-            aria-label={`Search ${page}`}
-            placeholder="Filter this page…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </label>
-        <span>{rows.length} items</span>
-      </div>
+      <ListToolbar>
+        <ListSearch
+          label={`Search ${page}`}
+          placeholder="Filter these results…"
+          value={search}
+          onChange={setSearch}
+        />
+        <span>
+          {rows.length} {rows.length === 1 ? "item" : "items"}
+        </span>
+        <ListRefresh
+          busy={query.isFetching}
+          disabled={!account.id}
+          onRefresh={() => void query.refetch()}
+        />
+      </ListToolbar>
       {!account.id ? (
         <Empty
           title="Connect an account"

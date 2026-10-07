@@ -1,0 +1,74 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "flareops-harness",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-02",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "experimental"
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "artifacts": [
+    {
+      "binding": "ARTIFACTS",
+      "namespace": "default"
+    }
+  ],
+  "worker_loaders": [
+    {
+      "binding": "LOADER"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PROJECTS",
+        "class_name": "Project"
+      },
+      {
+        "name": "AGENTS",
+        "class_name": "Agent"
+      },
+      {
+        "name": "BUDGET",
+        "class_name": "Budget"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "Project",
+        "Agent"
+      ]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": [
+        "Budget"
+      ]
+    }
+  ],
+  "containers": [
+    {
+      "class_name": "Agent",
+      "image": "./Dockerfile",
+      "max_instances": 4
+    },
+    {
+      "class_name": "Project",
+      "image": "./Dockerfile",
+      "max_instances": 2
+    }
+  ],
+  "vars": {
+    "ACCOUNT_ID": "SET_DURING_SETUP",
+    "MODEL": "@cf/moonshotai/kimi-k2.7-code"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

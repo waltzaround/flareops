@@ -343,11 +343,22 @@ export async function runPlan(
   jobs = [e, ...jobs].slice(0, 200);
   return e;
 }
-export const getHistory = async () =>
-  demo() ? jobs : call<Execution[]>("history");
-export const clearHistory = async () => {
-  if (demo()) jobs = [];
-  else await call("clear_history");
+export const getHistory = async (accountId: string, profile: string) =>
+  demo()
+    ? jobs.filter(
+        (e) =>
+          !!accountId &&
+          !!profile &&
+          e.accountId === accountId &&
+          e.profile === profile,
+      )
+    : call<Execution[]>("history", { accountId, profile });
+export const clearHistory = async (accountId: string, profile: string) => {
+  if (demo())
+    jobs = jobs.filter(
+      (e) => e.accountId !== accountId || e.profile !== profile,
+    );
+  else await call("clear_history", { accountId, profile });
 };
 export const cancelJob = (id: string) => call("cancel", { id });
 export const diagnostics = () => call<Diagnostics>("system_check");

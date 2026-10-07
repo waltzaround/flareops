@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { areaForPage, groupsForArea, productAreas } from "./navigation";
+import {
+  areaForPage,
+  groupsForArea,
+  productAreas,
+  managementPage,
+} from "./navigation";
 import { resourceGroups } from "./resource-catalog";
 import { productPages } from "./products";
 import { useUI } from "./store";
@@ -15,6 +20,8 @@ describe("navigation sections", () => {
     for (const page of productPages) expect(areaForPage(page)).not.toBe("Home");
   });
   it("routes direct navigation and search results to their matching section", () => {
+    expect(areaForPage("Projects")).toBe("Home");
+    expect(areaForPage("Cloudflare")).toBe("Build");
     expect(areaForPage("Workers")).toBe("Build");
     expect(areaForPage("Hosted videos")).toBe("Media");
     expect(areaForPage("DNS")).toBe("Network");
@@ -33,4 +40,14 @@ describe("navigation sections", () => {
     useUI.getState().navigate("Media");
     expect(useUI.getState().sidebarGroups.Compute).toBe(true);
   });
+});
+
+it("redirects retired project destinations to management pages", () => {
+  expect(managementPage("Projects")).toBe("Home");
+  expect(managementPage("Cloudflare")).toBe("Build");
+  useUI.getState().navigate("Projects");
+  expect(useUI.getState().page).toBe("Home");
+  useUI.getState().setDefaultPage("Cloudflare");
+  expect(useUI.getState().defaultPage).toBe("Build");
+  useUI.getState().setDefaultPage("Home");
 });

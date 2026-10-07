@@ -1,3 +1,8 @@
+import {
+  ListToolbar,
+  ListSearch,
+  ListRefresh,
+} from "../components/list-toolbar";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useUI } from "../lib/store";
@@ -36,28 +41,26 @@ export function AccountTokens() {
   return (
     <section className="native-account-read">
       <PageHeaderActions>
-        <DashboardLink />
+        <DashboardLink iconOnly />
       </PageHeaderActions>
       <p>
         Inspect account token names, status, and expiry. Create, rotate, or
         revoke tokens in the dashboard.
       </p>
-      <div className="native-read-controls">
-        <label className="field">
-          Filter this page
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Token name or status"
-          />
-        </label>
-        <Button
-          disabled={!account.id || query.isFetching}
-          onClick={() => void query.refetch()}
-        >
-          Refresh
-        </Button>
-      </div>
+      <ListToolbar label="Account token filters">
+        <ListSearch
+          label="Search account tokens"
+          placeholder="Token name or status"
+          value={search}
+          onChange={setSearch}
+        />
+        <span>{rows?.length ?? 0} tokens</span>
+        <ListRefresh
+          busy={query.isFetching}
+          disabled={!account.id}
+          onRefresh={() => void query.refetch()}
+        />
+      </ListToolbar>
       {mode === "demo" && <p className="muted">Sample data</p>}
       {!account.id ? (
         <Empty
@@ -168,10 +171,10 @@ export function AgentTraces() {
   return (
     <section className="native-account-read">
       <PageHeaderActions>
-        <DashboardLink />
+        <DashboardLink iconOnly />
       </PageHeaderActions>
       <form
-        className="native-read-controls"
+        className="native-read-controls filter-card"
         onSubmit={(e) => {
           e.preventDefault();
           setSearch(draft.trim());

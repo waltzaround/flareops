@@ -61,10 +61,10 @@ export function useResources(kind: Resource["kind"]) {
   });
 }
 export function useHistory() {
-  const mode = useUI((s) => s.mode);
+  const { mode, account } = useUI();
   return useQuery({
-    queryKey: ["history", mode],
-    queryFn: getHistory,
+    queryKey: ["history", mode, account.profile, account.id],
+    queryFn: () => getHistory(account.id, account.profile),
     refetchInterval: 5000,
   });
 }

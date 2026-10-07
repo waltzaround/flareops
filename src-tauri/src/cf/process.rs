@@ -67,6 +67,7 @@ impl Runner for SystemRunner {
         for (key, _) in std::env::vars() {
             if key.starts_with("CLOUDFLARE_")
                 || key.starts_with("CF_")
+                || key.starts_with("WRANGLER_")
                 || key == "NODE_OPTIONS"
                 || key == "NODE_PATH"
             {
