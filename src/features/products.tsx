@@ -1,5 +1,10 @@
 import { TunnelStatus } from "../components/tunnel-status";
 import {
+  ListToolbar,
+  ListSearch,
+  ListRefresh,
+} from "../components/list-toolbar";
+import {
   UnsupportedFeature,
   DashboardLink,
 } from "../components/unsupported-feature";
@@ -10,7 +15,7 @@ import { PageOperations } from "./page-operations";
 import { pageOperations } from "../lib/page-operations";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowUpRight, RefreshCw, Terminal, BookOpen } from "lucide-react";
+import { ArrowUpRight, Terminal, BookOpen } from "lucide-react";
 import { useUI } from "../lib/store";
 import {
   products,
@@ -84,34 +89,27 @@ export function Product({
             {config.description} · {account.name}
           </p>
         </div>
-        {config.list && (
-          <Button
-            disabled={!account.id || query.isFetching}
-            onClick={() => void query.refetch()}
-          >
-            <RefreshCw size={14} />
-            Refresh
-          </Button>
-        )}
       </div>
       <PageHeaderActions>
-        <DashboardLink />
+        <DashboardLink iconOnly />
         {config.command && (
           <Button
             title="Explore commands"
+            aria-label="Explore commands"
             onClick={() => onCommand(productDiscovery(page))}
           >
-            <span>Explore commands</span> <Terminal size={14} />
+            <Terminal size={18} aria-hidden="true" />
           </Button>
         )}
         {config.docs && (
           <a
             title="Documentation"
+            aria-label="Documentation"
             href={`https://developers.cloudflare.com/${config.docs}/`}
             target="_blank"
             rel="noreferrer"
           >
-            <span>Documentation</span> <BookOpen size={14} />
+            <BookOpen size={18} aria-hidden="true" />
           </a>
         )}
       </PageHeaderActions>
@@ -142,19 +140,23 @@ export function Product({
       )}
       {config.list && (
         <>
-          <div className="log-filters">
-            <label className="log-search">
-              <input
-                aria-label={`Search ${page}`}
-                placeholder="Filter these results…"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </label>
+          <ListToolbar>
+            <ListSearch
+              label={`Search ${page}`}
+              placeholder="Filter these results…"
+              value={search}
+              onChange={setSearch}
+            />
             <span>
-              {rows.length} items{mode === "demo" ? " · Sample data" : ""}
+              {rows.length} {rows.length === 1 ? "item" : "items"}
+              {mode === "demo" ? " · Sample data" : ""}
             </span>
-          </div>
+            <ListRefresh
+              busy={query.isFetching}
+              disabled={!account.id}
+              onRefresh={() => void query.refetch()}
+            />
+          </ListToolbar>
           {!account.id ? (
             <Empty
               title="Connect an account"

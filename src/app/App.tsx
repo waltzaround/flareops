@@ -163,6 +163,7 @@ export default function App() {
       <button
         key={`page:${p}`}
         aria-label={label}
+        aria-current={page === p ? "page" : undefined}
         title={label}
         className={`nav-item ${page === p ? "active" : ""}`}
         onClick={() => navigate(p)}

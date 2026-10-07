@@ -1,10 +1,10 @@
+import { ListToolbar, ListSearch } from "../components/list-toolbar";
 import { useState } from "react";
 import {
   Check,
   ChevronDown,
   ChevronRight,
   Copy,
-  Search,
   Trash2,
   XCircle,
 } from "lucide-react";
@@ -62,7 +62,7 @@ export function ActivityView({
               setClearing(true);
               setClearError(null);
               try {
-                await clearHistory();
+                await clearHistory(account.id, account.profile);
                 await queryClient.invalidateQueries({ queryKey: ["history"] });
               } catch (error) {
                 setClearError(error);
@@ -72,23 +72,20 @@ export function ActivityView({
             }}
           >
             <Trash2 size={14} />
-            {clearing ? "Clearing…" : "Clear all history"}
+            {clearing ? "Clearing…" : "Clear account history"}
           </Button>
         </div>
       )}
       {error && <ErrorBox error={error} />}
       {!!clearError && <ErrorBox error={clearError} />}
       {!compact && (
-        <div className="log-filters">
-          <label className="log-search">
-            <Search size={16} />
-            <input
-              aria-label="Search command logs"
-              placeholder="Search commands and output…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </label>
+        <ListToolbar label="Command log filters">
+          <ListSearch
+            label="Search command logs"
+            placeholder="Search commands and output…"
+            value={search}
+            onChange={setSearch}
+          />
           <select
             aria-label="Filter logs by status"
             value={status}
@@ -99,7 +96,7 @@ export function ActivityView({
             <option value="failed">Failed</option>
           </select>
           <span>{filtered.length} logs</span>
-        </div>
+        </ListToolbar>
       )}
       <div className="activity-list">
         {(compact ? records : filtered).slice(0, compact ? 6 : 200).map((h) => (

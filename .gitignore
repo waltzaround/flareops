@@ -25,3 +25,10 @@ release-state.json
 /*.png
 src-tauri/gen/
 website/
+
+# Agent backend local configuration and credentials
+.dev.vars
+.dev.vars.*
+harness/wrangler.local.json
+
+src-tauri/resources/harness-runtime/

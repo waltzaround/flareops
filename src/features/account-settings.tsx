@@ -1,3 +1,8 @@
+import {
+  ListToolbar,
+  ListSearch,
+  ListRefresh,
+} from "../components/list-toolbar";
 import { AccountTokens } from "./account-reads";
 import { PageHeaderActions } from "../components/page-header-actions";
 import {
@@ -8,7 +13,6 @@ import { PageOperations } from "./page-operations";
 import { pageOperations } from "../lib/page-operations";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { RefreshCw } from "lucide-react";
 import { useUI } from "../lib/store";
 import { loadAccountRows, type AccountSetting } from "../lib/account-settings";
 import { Button } from "../components/ui/button";
@@ -63,22 +67,12 @@ export function AccountSettings({ setting }: { setting: AccountSetting }) {
   return (
     <section className="account-management">
       <PageHeaderActions>
-        <DashboardLink />
+        <DashboardLink iconOnly />
       </PageHeaderActions>
       <p>{setting.description}</p>
       <div className="account-management-context">
         <strong>{account.name}</strong>
         <span>{account.profile}</span>
-      </div>
-      <div className="account-management-actions">
-        {setting.path && (
-          <Button
-            disabled={query.isFetching}
-            onClick={() => void query.refetch()}
-          >
-            <RefreshCw size={14} /> Refresh
-          </Button>
-        )}
       </div>
       {pageOperations[setting.label] && (
         <PageOperations
@@ -88,14 +82,22 @@ export function AccountSettings({ setting }: { setting: AccountSetting }) {
       )}
       {setting.path && (
         <>
-          <label className="field">
-            Filter this page
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+          <ListToolbar label={`${setting.label} filters`}>
+            <ListSearch
+              label={`Search ${setting.label}`}
               placeholder={`Search ${setting.label.toLowerCase()}…`}
+              value={search}
+              onChange={setSearch}
             />
-          </label>
+            <span>
+              {rows.length} {rows.length === 1 ? "item" : "items"}
+            </span>
+            <ListRefresh
+              busy={query.isFetching}
+              disabled={!account.id}
+              onRefresh={() => void query.refetch()}
+            />
+          </ListToolbar>
           {query.isPending ? (
             <Loading />
           ) : query.error ? (

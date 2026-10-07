@@ -333,13 +333,16 @@ fn cancel(id: String, client: State<'_, CfClient>) -> Result<(), String> {
     }
 }
 #[tauri::command]
-fn history(client: State<'_, CfClient>) -> Vec<Execution> {
-    client.history.lock().unwrap().clone()
+fn history(account_id: String, profile: String, client: State<'_, CfClient>) -> Vec<Execution> {
+    client.history.lock().unwrap().iter().filter(|entry| entry.in_scope(&account_id, &profile)).cloned().collect()
 }
 #[tauri::command]
-fn clear_history(client: State<'_, CfClient>) -> Result<(), String> {
-    client.history.lock().unwrap().clear();
-    client.store.write("history", &Vec::<Execution>::new())
+fn clear_history(account_id: String, profile: String, client: State<'_, CfClient>) -> Result<(), String> {
+    let mut history = client.history.lock().map_err(|e| e.to_string())?;
+    let retained: Vec<_> = history.iter().filter(|entry| !entry.in_scope(&account_id, &profile)).cloned().collect();
+    client.store.write("history", &retained)?;
+    *history = retained;
+    Ok(())
 }
 #[tauri::command]
 async fn auth_action(
@@ -384,6 +387,9 @@ pub fn run() {
             if let Some(runtime) = runtime {
                 client.binary = Some(runtime.node.clone());
                 client.runtime = Some(runtime);
+            }
+            if !cfg!(debug_assertions) && client.runtime.is_none() {
+                return Err(std::io::Error::other("Bundled Cloudflare runtime missing. Reinstall FlareOps.").into());
             }
             app.manage(client);
             app.manage(management::Plans::default());

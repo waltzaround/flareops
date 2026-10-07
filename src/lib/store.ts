@@ -1,3 +1,4 @@
+import { managementPage } from "./navigation";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Account, Page, Resource } from "./types";
@@ -133,7 +134,7 @@ export const useUI = create<UIState>()(
         }),
       navigate: (page, sidebar) =>
         set((s) => ({
-          page,
+          page: managementPage(page),
           sidebarOverride: sidebar ?? null,
           recentAnalytics: [
             "Account analytics",
@@ -162,12 +163,21 @@ export const useUI = create<UIState>()(
         set((s) => ({
           recent: [r, ...s.recent.filter((v) => v.id !== r.id)].slice(0, 12),
         })),
-      setDefaultPage: (defaultPage) => set({ defaultPage }),
+      setDefaultPage: (defaultPage) =>
+        set({ defaultPage: managementPage(defaultPage) }),
       setWorkspaceLabel: (workspaceLabel) => set({ workspaceLabel }),
     }),
     {
       // Keep the existing storage key so saved preferences survive the rename.
       name: "boxflare-ui-v1",
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.defaultPage = managementPage(state.defaultPage);
+          state.pinnedPages = state.pinnedPages.filter(
+            (page) => page !== "Projects" && page !== "Cloudflare",
+          );
+        }
+      },
       partialize: (s) => ({
         pinnedPages: s.pinnedPages,
         sidebarGroups: s.sidebarGroups,

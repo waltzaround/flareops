@@ -121,8 +121,62 @@ See [RELEASES.md](RELEASES.md) for the build matrix, version/tag process, signin
 
 ## License
 
-FlareOps is open source under the [GNU Affero General Public License v3.0 only](LICENSE) (`AGPL-3.0-only`). Copyright (C) 2026 Walter Lim.
+FlareOps is open source under the [MIT License](LICENSE). Copyright (c) 2026 Walter Lim.
 
-Commercial use is allowed. Distribution of covered software requires compliance with AGPLv3, including providing corresponding source. Modified versions that support remote network interaction must offer their corresponding source to those users under section 13. See the full license for the terms; this summary does not replace it.
+You may use, modify, distribute, and sell copies, provided you retain the copyright and permission notice. FlareOps comes without warranty; see the full license for the terms.
 
-This license applies to FlareOps original code, including the initial public beta. Third-party dependencies and assets retain their own licenses; see [NOTICE](NOTICE). FlareOps comes without warranty.
+This license applies to the FlareOps original code in this revision. Third-party dependencies and assets retain their own licenses; see [NOTICE](NOTICE).
+
+## Archived project experiment
+
+The desktop app uses the original Cloudflare management navigation. Projects,
+AI project onboarding, and the harness are disconnected from the app and desktop
+build. Their source is retained for extraction into a separate project; existing
+local project data is preserved. The following describes that inactive experiment.
+
+### Protected project previews
+
+Deploy preview uses the signed-in Cloudflare profile and selected account. Before
+uploading code, it creates a project-specific Access application that allows the
+signed-in user's email. Zero Trust must already be enabled, and the login must
+have Access, Workers and requested storage permissions. A setup or policy
+verification failure stops the upload; there is no automatic public fallback.
+Worker-level Access currently does not support WebSockets.
+
+Agents can declare isolated storage in the reviewed commit at
+`.flareops/preview/resources.json`:
+
+```json
+[
+  { "type": "d1", "binding": "DB" },
+  { "type": "kv", "binding": "CACHE" },
+  { "type": "r2", "binding": "FILES" }
+]
+```
+
+The desktop provisions empty resources, binds them to that review, and reuses them
+on redeploy. Production IDs and arbitrary Wrangler configuration are rejected.
+D1 schema initialization belongs in the application and should be idempotent.
+The confirmation dialog lists the requested bindings before provisioning.
+
+Deletion retains data by default. The optional data cleanup deletes D1 databases,
+KV namespaces and empty R2 buckets after deleting the preview. Nonempty R2 buckets
+must be emptied in Cloudflare first. The project Access application is retained
+because it protects other review previews too.
+
+Provisioning metadata is journaled in the desktop application data directory,
+scoped by account, profile and project. Keep this journal when moving installations.
+An ambiguous interrupted API create requires reconciliation in Cloudflare and the
+local journal; FlareOps refuses to guess ownership or create duplicate resources.
+An interrupted desktop process may leave a `.lock` file; remove it only after
+confirming the recorded process has stopped. API credentials are never saved in
+this journal or supplied to generated code.
+
+Update the account's harness backend to export resource manifests from new reviews,
+and rebuild/restart the native app for the provisioning helper. Unit tests use
+mocked APIs; live Access and resource provisioning have not yet been verified.
+
+References: [Access for Workers](https://developers.cloudflare.com/workers/configuration/cloudflare-access/)
+and [preview resource isolation](https://developers.cloudflare.com/workers/previews/resources/).
+
+Website deployment selects the account through `CLOUDFLARE_ACCOUNT_ID` in the local environment; the tracked deployment config contains no account identifier. Keep deployment credentials in local environment variables or repository secrets.

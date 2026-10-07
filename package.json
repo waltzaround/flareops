@@ -1,6 +1,6 @@
 {
   "name": "flareops",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,8 @@
     "desktop:build": "node scripts/build-desktop.mjs",
     "test:packaging": "node --test scripts/runtime-config.test.mjs",
     "release:check": "node scripts/release.mjs check",
-    "test:scripts": "node scripts/test-scripts.mjs"
+    "test:scripts": "node scripts/test-scripts.mjs",
+    "desktop:prepare-harness": "node scripts/prepare-harness.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -44,5 +45,5 @@
     "vite": "^6.3.6",
     "vitest": "^4.1.11"
   },
-  "license": "AGPL-3.0-only"
+  "license": "MIT"
 }

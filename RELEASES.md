@@ -18,8 +18,8 @@ Linux produces `.deb` and `.AppImage`; macOS produces `.dmg`; Windows produces a
 3. Commit changes, then tag that commit. For the current version:
 
    ```sh
-   git tag v0.1.0
-   git push origin v0.1.0
+   git tag v0.1.0-beta.1
+   git push origin v0.1.0-beta.1
    ```
 
 4. Check every matrix job, download the installers, and test installation, launch, bundled CLI discovery, and sign-in on clean machines.
@@ -83,3 +83,34 @@ node scripts/release.mjs collect src-tauri/target/release/bundle release-assets 
 ```
 
 The macOS example sets `CI=true` to use the same noninteractive DMG packaging as GitHub Actions. Use the matching native target for your machine. The collector requires exactly one installer per format, preventing stale builds from being selected silently. The manifest assembler requires every target and rechecks sizes and hashes after downloading artifacts from Actions.
+
+## Current beta readiness
+
+The management app is versioned `0.1.0-beta.1`. The Projects experiment is inactive
+and its harness is excluded from desktop packages. CI rejects high/critical npm
+advisories in the app and bundled CLI. The CLI pins `sharp` 0.35.5 to address
+[GHSA-wq5f-xc86-pv6w](https://github.com/advisories/GHSA-wq5f-xc86-pv6w).
+
+Before a public launch, complete macOS signing/notarization, configure Windows
+signing, and run the clean-machine checks above on each platform. The repository
+is private: its release download links require access until a public distribution
+location is configured. Do not publish the repository just to make downloads work.
+
+Command history is scoped by both account and profile in the native service.
+History deletion only affects that scope; legacy entries without account context
+are not returned. On Unix, local history/cache files use owner-only permissions.
+These files are not encrypted, and profiles are not OS-level security sandboxes.
+
+### Local validation — 7 October 2026
+
+- 89 frontend tests, 52 script tests and 33 Rust tests passed.
+- Version consistency and frontend production build passed.
+- App and bundled CLI production npm audits reported zero known vulnerabilities.
+- Patched sharp native image generation passed (`sharp` 0.35.5 / librsvg 2.63.2).
+- macOS arm64 `.app` and `.dmg` built. Packaged app launched successfully; the
+  packaged sidecar reported cf 1.0.0-beta.8. Resources contain only the CLI runtime,
+  licenses and app icon, with no harness runtime.
+- Installer: `src-tauri/target/release/bundle/dmg/FlareOps_0.1.0-beta.1_aarch64.dmg`.
+  Its checksum is in the adjacent `SHA256SUMS.txt`.
+- Signature is ad-hoc, with no Developer ID or notarization. Other platforms and
+  clean-machine sign-in/mutation checks remain unverified. No release was published.

@@ -31,6 +31,11 @@ pub struct Execution {
     pub finished_at: String,
     pub error: Option<String>,
 }
+impl Execution {
+    pub fn in_scope(&self, account_id: &str, profile: &str) -> bool {
+        !account_id.is_empty() && !profile.is_empty() && self.account_id == account_id && self.profile == profile
+    }
+}
 pub struct CfClient {
     pub store: Store,
     pub binary: Option<std::path::PathBuf>,
@@ -551,5 +556,25 @@ mod integration_tests {
             .iter()
             .all(|h| !h.command.contains("d1 create")));
         std::fs::remove_dir_all(&c.store.dir).unwrap();
+    }
+}
+
+#[cfg(test)]
+mod history_scope_tests {
+    use super::*;
+    #[test]
+    fn history_requires_both_account_and_profile_and_excludes_legacy_entries() {
+        let mut entry: Execution = serde_json::from_value(json!({
+            "id":"test", "success":true, "data":null, "rawStdout":"", "rawStderr":"",
+            "exitCode":0, "durationMs":0, "command":"cf workers list", "profile":"personal",
+            "accountId":"account-a", "zoneId":null, "startedAt":"", "finishedAt":"", "error":null
+        })).unwrap();
+        assert!(entry.in_scope("account-a", "personal"));
+        assert!(!entry.in_scope("account-a", "work"));
+        assert!(!entry.in_scope("account-b", "personal"));
+        assert!(!entry.in_scope("", ""));
+        entry.account_id.clear();
+        assert!(!entry.in_scope("account-a", "personal"));
+        assert!(!entry.in_scope("", "personal"));
     }
 }

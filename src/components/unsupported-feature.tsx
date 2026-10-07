@@ -1,3 +1,4 @@
+import { LayoutDashboard } from "lucide-react";
 import { useUI } from "../lib/store";
 import { cloudflareIcon } from "./cloudflare-icons";
 const Info = cloudflareIcon("info-sign");
@@ -33,16 +34,17 @@ export function UnsupportedFeature({
   );
 }
 
-export function DashboardLink() {
+export function DashboardLink({ iconOnly = false }: { iconOnly?: boolean }) {
   const { account } = useUI();
   return (
     <a
       title="Open Cloudflare dashboard"
+      aria-label="Open Cloudflare dashboard"
       href={`https://dash.cloudflare.com/${encodeURIComponent(account.id)}`}
       target="_blank"
       rel="noreferrer"
     >
-      Open Cloudflare dashboard ↗
+      {iconOnly ? <LayoutDashboard size={18} aria-hidden="true" /> : "Open Cloudflare dashboard ↗"}
     </a>
   );
 }

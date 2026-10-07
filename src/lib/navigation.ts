@@ -33,6 +33,7 @@ export function groupsForArea(area: NavigationArea) {
   );
 }
 export function areaForPage(page: Page): NavigationArea {
+  page = managementPage(page);
   if (page === "Home" || page === "Settings") return page;
   if (aiPages.includes(page as AIPage)) return "AI";
   if (workspacePages.includes(page)) return "Workspace";
@@ -42,4 +43,9 @@ export function areaForPage(page: Page): NavigationArea {
       groupsForArea(area).some((group) => group.kinds.includes(page)),
     ) ?? "Home"
   );
+}
+
+// Compatibility with preferences saved during the Projects experiment.
+export function managementPage(page: Page): Page {
+  return page === "Projects" ? "Home" : page === "Cloudflare" ? "Build" : page;
 }

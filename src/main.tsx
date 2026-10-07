@@ -5,6 +5,8 @@ import { queryClient } from "./lib/query";
 import App from "./app/App";
 import "./app/styles.css";
 import "./app/workspace.css";
+import "./app/motion.css";
+import "./app/controls.css";
 class Boundary extends React.Component<
   { children: React.ReactNode },
   { error: boolean }

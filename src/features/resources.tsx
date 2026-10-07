@@ -1,3 +1,8 @@
+import {
+  ListToolbar,
+  ListSearch,
+  ListRefresh,
+} from "../components/list-toolbar";
 import { WorkerManagement } from "./worker-management";
 import { Deployments } from "./deployments";
 import { sortResources, type SortKey } from "../lib/resource-sort";
@@ -18,12 +23,9 @@ import {
   MoreHorizontal,
   Pencil,
   Plus,
-  RefreshCw,
-  Search,
   Star,
   Terminal,
   Trash2,
-  X,
 } from "lucide-react";
 import { useUI } from "../lib/store";
 import { useResources, useWorkerTraffic } from "../lib/query";
@@ -158,38 +160,30 @@ export function Resources({
                   : `Create ${kind === "D1" ? "database" : kind === "R2" ? "bucket" : kind === "KV" ? "namespace" : "queue"}`)}
         </Button>
       </div>
-      {dns && (
-        <div className="zone-selector">
-          <Globe2 size={17} />
-          <select
-            aria-label="DNS zone"
-            value={zone}
-            onChange={(e) => setZone(e.target.value)}
-          >
-            <option value="">Select a zone</option>
-            {zones.data?.map((z) => (
-              <option key={z.id} value={z.id}>
-                {z.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-      <div className="resource-toolbar">
-        <div className="search-field">
-          <Search size={16} />
-          <input
-            aria-label={`Search ${names[kind]}`}
-            placeholder={`Search ${names[kind].toLowerCase()}…`}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          {search && (
-            <button aria-label="Clear search" onClick={() => setSearch("")}>
-              <X size={14} />
-            </button>
-          )}
-        </div>
+      <ListToolbar>
+        {dns && (
+          <div className="zone-picker">
+            <Globe2 size={16} aria-hidden="true" />
+            <select
+              aria-label="DNS zone"
+              value={zone}
+              onChange={(e) => setZone(e.target.value)}
+            >
+              <option value="">Select a zone</option>
+              {zones.data?.map((z) => (
+                <option key={z.id} value={z.id}>
+                  {z.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <ListSearch
+          label={`Search ${names[kind]}`}
+          placeholder={`Search ${names[kind].toLowerCase()}…`}
+          value={search}
+          onChange={setSearch}
+        />
         {dns && (
           <select
             aria-label="Filter record type"
@@ -204,19 +198,17 @@ export function Resources({
         <span className="resource-total">
           {query.isError && !rows.length
             ? "Unavailable"
-            : `${rows.length} ${dns ? "records" : "resources"}`}
+            : `${rows.length} ${dns ? "record" : "resource"}${rows.length === 1 ? "" : "s"}`}
         </span>
-        <Button
-          size="icon"
-          title="Refresh resources"
-          onClick={() => {
+        <ListRefresh
+          busy={query.isFetching}
+          disabled={!account.id || (dns && !zone)}
+          onRefresh={() => {
             void query.refetch();
             if (kind === "Workers") void traffic.refetch();
           }}
-        >
-          <RefreshCw size={15} className={query.isFetching ? "spin" : ""} />
-        </Button>
-      </div>
+        />
+      </ListToolbar>
       {kind === "Workers" && traffic.isError && (
         <div className="traffic-notice" role="status">
           Traffic unavailable.{" "}
@@ -403,6 +395,7 @@ export function Resources({
                             variant="ghost"
                             size="icon"
                             title={`Favorite ${r.name}`}
+                            aria-pressed={favorites.includes(r.id)}
                             onClick={() => toggleFavorite(r.id)}
                           >
                             <Star

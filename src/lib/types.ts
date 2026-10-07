@@ -13,6 +13,8 @@ export type Page =
   | "Vectorize"
   | "AI Search"
   | "Agent tracing"
+  | "Projects"
+  | "Cloudflare"
   | "Home"
   | "Workers"
   | "Zones"
